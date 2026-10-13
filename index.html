@@ -175,16 +175,16 @@ const hubs=[
  {id:"tjh",icon:"🎯",name:"JEE Hub",code:"TJH",color:"#00aaff",status:"live",
   link:"https://thoedge.github.io/TJH/",stage:"Class 11-12",
   desc:"JEE Main & Advanced and other entrance exams: books, notes, formulas, shortcuts, PYQs, DPPs and mock tests.",tags:["JEE Main","JEE Advanced","BITSAT","NEET"]},
- {id:"eng",icon:"🛠️",name:"Engineering Hub",code:"TEH",color:"#10b981",status:"soon",
+ {id:"eng",icon:"🛠️",name:"Engineering Hub",code:"TEH",color:"#10b981",status:"live",
   link:"https://thoedge.github.io/TEH/",stage:"Engineering",
   desc:"Year-wise and branch-wise notes, university question papers, lab manuals and projects.",tags:["Year 1-4","Branches","Notes","Labs"]},
- {id:"skills",icon:"💻",name:"Tech Skills Hub",code:"TSH",color:"#ec4899",status:"soon",
+ {id:"skills",icon:"💻",name:"Tech Skills Hub",code:"TSH",color:"#ec4899",status:"live",
   link:"https://thoedge.github.io/TSH/",stage:"Skills",
   desc:"Roadmaps and free resources for coding, web development, AI and data structures.",tags:["Coding","Web","AI","DSA"]},
- {id:"gate",icon:"🧭",name:"GATE Hub",code:"TGH",color:"#6366f1",status:"soon",
+ {id:"gate",icon:"🧭",name:"GATE Hub",code:"TGH",color:"#6366f1",status:"live",
   link:"https://thoedge.github.io/TGH/",stage:"After engineering",
   desc:"GATE preparation by branch with syllabus, PYQs, notes and test practice.",tags:["GATE","PYQs","Mock tests"]},
- {id:"career",icon:"🚀",name:"Career Hub",code:"TCH",color:"#eab308",status:"soon",
+ {id:"career",icon:"🚀",name:"Career Hub",code:"TCH",color:"#eab308",status:"live",
   link:"https://thoedge.github.io/TCH/",stage:"Careers",
   desc:"Resume help, internships, placement preparation and interview questions.",tags:["Resume","Internships","Placements"]}
 ];
@@ -203,9 +203,21 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"
 const byId=id=>hubs.find(h=>h.id===id);
 
 $("hub-grid").innerHTML=hubs.map(h=>{
- const ready=h.status==="live"&&h.link&&!h.link.startsWith("YOUR_");
- const btn=ready?`<a class="btn" href="${esc(h.link)}" target="_blank" rel="noopener noreferrer">Open ${esc(h.code)} →</a>`
-  :`<span class="btn off">${h.status==="live"?"Link coming":"Coming soon"}</span>`;
+ 
+const ready =
+  h.status === "live" &&
+  h.link &&
+  !h.link.startsWith("YOUR_");
+
+const btn = ready
+  ? `<a class="btn" href="${esc(h.link)}"
+       target="_blank" rel="noopener noreferrer">
+       Open ${esc(h.code)} →
+     </a>`
+  : `<span class="btn off">${
+       h.status === "live" ? "Check link" : "Coming soon"
+     }</span>`;
+  
  return `<article class="hub" id="hub-${h.id}" style="--k:${h.color}">
   <div class="hub-top"><div class="icon">${h.icon}</div><span class="status ${h.status}">${h.status==="live"?"LIVE":"COMING SOON"}</span></div>
   <h3>${esc(h.name)}</h3><div class="code">${esc(h.code)} • ${esc(h.stage)}</div>
