@@ -328,7 +328,7 @@
       animation: glowPulse 2.4s ease-in-out infinite;
     }
 
-    /* Actual logo image */
+    /* Actual logo image: ONE IMAGE ONLY */
 
     .orbit-logo {
       position: absolute;
@@ -336,22 +336,27 @@
 
       z-index: 2;
 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       overflow: hidden;
       border-radius: 50%;
+
+      pointer-events: none;
     }
+
     .orbit-logo img {
-       display: block;
-       width: 100%;
-       height: 100%;
+      display: block;
+
+      width: 48px;
+      height: 48px;
+
+      max-width: 48px;
+
       object-fit: contain;
       object-position: center;
     }
-
-    /*
-      The image fills the entire circular frame.
-      Use object-fit: contain if your logo should
-      remain completely visible without cropping.
-    */
 
     /* Airplane path */
 
@@ -520,11 +525,16 @@
 
     /* =========================================
        3. HEADER
+       SHOW AT TOP
+       HIDE ON DOWNWARD SCROLL
+       SHOW ON UPWARD SCROLL
     ========================================= */
 
     .site-header {
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
 
       z-index: 1000;
 
@@ -537,12 +547,12 @@
       -webkit-backdrop-filter: blur(18px);
 
       transition:
-        transform 0.25s ease,
-        opacity 0.25s ease;
+        transform 0.28s ease,
+        opacity 0.28s ease;
     }
 
     .site-header.header-hidden {
-      transform: translateY(-100%);
+      transform: translateY(-110%);
       opacity: 0;
       pointer-events: none;
     }
@@ -574,7 +584,7 @@
       display: flex;
       align-items: center;
 
-      padding: 85px 0;
+      padding: 105px 0 85px;
 
       text-align: center;
     }
@@ -1104,7 +1114,6 @@
 
     /* =========================================
        8. ABOUT SECTION
-       ACTUAL LOGO: 48 x 48
     ========================================= */
 
     .about-panel {
@@ -1123,24 +1132,31 @@
     }
 
     .about-symbol {
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 22px;
-  padding: 0;
-  overflow: hidden;
-  border: 1px solid rgba(80, 234, 255, 0.35);
-  border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 0 15px rgba(80, 234, 255, 0.18);
-}
+      width: 48px;
+      height: 48px;
 
-.about-symbol img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-}
+      margin: 0 auto 22px;
+      padding: 0;
+
+      overflow: hidden;
+
+      border: 1px solid rgba(80, 234, 255, 0.35);
+      border-radius: 12px;
+
+      background: #ffffff;
+
+      box-shadow: 0 0 15px rgba(80, 234, 255, 0.18);
+    }
+
+    .about-symbol img {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+      object-position: center;
+    }
 
     .about-panel h2 {
       margin-bottom: 15px;
@@ -1234,7 +1250,6 @@
     ========================================= */
 
     @media (max-width: 950px) {
-
       .hub-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -1242,7 +1257,6 @@
       .journey-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
-
     }
 
 
@@ -1251,20 +1265,17 @@
     ========================================= */
 
     @media (max-width: 600px) {
-
       .section {
         padding: 65px 0;
       }
 
       .hero {
         min-height: auto;
-
-        padding: 75px 0 60px;
+        padding: 105px 0 60px;
       }
 
       .hero h1 {
         font-size: clamp(2.6rem, 11vw, 4rem);
-
         letter-spacing: -2px;
       }
 
@@ -1274,9 +1285,7 @@
 
       .hero-actions {
         flex-direction: column;
-
         max-width: 310px;
-
         margin: 30px auto 0;
       }
 
@@ -1323,7 +1332,6 @@
       .flight-stage {
         transform: scale(0.85);
       }
-
     }
 
 
@@ -1332,7 +1340,6 @@
     ========================================= */
 
     @media (prefers-reduced-motion: reduce) {
-
       html {
         scroll-behavior: auto;
       }
@@ -1364,10 +1371,9 @@
       *::before,
       *::after {
         scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
       }
-
     }
-
   </style>
 </head>
 
@@ -1389,19 +1395,22 @@
 
         <div class="orbit-glow"></div>
 
-       <div class="orbit-logo">
-  <img
-    src="logo.png"
-    alt="thoEdge logo"
-    width="250"
-    height="250"
-  >
-</div>
+        <!-- One centered logo image -->
 
-<div class="aircraft-path">
-  <span class="aircraft" aria-hidden="true">✈</span>
-</div>
-       </div>
+        <div class="orbit-logo">
+          <img
+            src="logo.png"
+            alt="thoEdge logo"
+            width="48"
+            height="48"
+          >
+        </div>
+
+        <div class="aircraft-path">
+          <span class="aircraft" aria-hidden="true">✈</span>
+        </div>
+
+      </div>
 
       <div class="takeoff-trail"></div>
 
@@ -1851,8 +1860,6 @@
 
         <div class="about-panel reveal">
 
-          <!-- Actual logo, 48 x 48 -->
-
           <div class="about-symbol">
 
             <img
@@ -1920,7 +1927,6 @@
   <script>
     "use strict";
 
-
     /* =======================================
        ELEMENTS
     ======================================== */
@@ -1935,6 +1941,9 @@
 
     let introTimer = null;
     let isOpeningHub = false;
+
+    const INTRO_DURATION = 3000;
+    const RETURN_FLAG = "thoEdgeReturnFromHub";
 
 
     /* =======================================
@@ -1974,20 +1983,39 @@
     ======================================== */
 
     function hideIntro() {
+      clearTimeout(introTimer);
       intro.classList.add("hide");
     }
 
 
     /* =======================================
-       FIRST PAGE-LOAD ANIMATION
+       INITIAL INTRO AND BACK NAVIGATION
     ======================================== */
 
+    let returningFromHub = false;
+
+    try {
+      returningFromHub =
+        sessionStorage.getItem(RETURN_FLAG) === "1";
+
+      if (returningFromHub) {
+        sessionStorage.removeItem(RETURN_FLAG);
+      }
+    } catch (error) {
+      returningFromHub = false;
+    }
+
     function startInitialIntro() {
+      if (returningFromHub) {
+        hideIntro();
+        return;
+      }
+
       showIntro();
 
       introTimer = setTimeout(function () {
         hideIntro();
-      }, 3000);
+      }, INTRO_DURATION);
     }
 
     if (document.readyState === "complete") {
@@ -2025,7 +2053,9 @@
         event.ctrlKey ||
         event.metaKey ||
         event.shiftKey ||
-        event.altKey
+        event.altKey ||
+        link.target === "_blank" ||
+        link.hasAttribute("download")
       ) {
         return;
       }
@@ -2038,20 +2068,32 @@
 
       const destination = link.href;
 
-      // Display the airplane intro again.
-      showIntro();
-
       /*
-        Do not hide the intro before navigation.
+        Keep the intro visible during the animation.
         This prevents the landing page from flashing
-        between the animation and the destination.
+        before the destination opens.
       */
+
+      showIntro();
 
       introTimer = setTimeout(function () {
 
+        /*
+          Store a one-time session flag immediately
+          before same-tab navigation. If the visitor
+          returns, the intro is skipped once.
+        */
+
+        try {
+          sessionStorage.setItem(RETURN_FLAG, "1");
+        } catch (error) {
+          // Navigation still works if storage is blocked.
+        }
+
+        // Normal navigation preserves browser history.
         window.location.href = destination;
 
-      }, 3000);
+      }, INTRO_DURATION);
 
     });
 
@@ -2100,24 +2142,74 @@
 
     /* =======================================
        HEADER SCROLL EFFECT
+       HIDE DOWN / SHOW UP
     ======================================== */
 
-    function updateHeader() {
+    let lastScrollY = window.scrollY;
+    let scrollTicking = false;
 
-      siteHeader.classList.toggle(
-        "header-hidden",
-        window.scrollY >= 60
-      );
+    function updateHeaderOnScroll() {
 
+      const currentY = Math.max(0, window.scrollY);
+
+      if (currentY < 60) {
+
+        // Always show the toolbar near the top.
+        siteHeader.classList.remove("header-hidden");
+
+      } else if (currentY > lastScrollY + 2) {
+
+        // Scrolling down: hide the toolbar.
+        siteHeader.classList.add("header-hidden");
+
+      } else if (currentY < lastScrollY - 2) {
+
+        // Scrolling up: reveal the toolbar.
+        siteHeader.classList.remove("header-hidden");
+
+      }
+
+      lastScrollY = currentY;
+      scrollTicking = false;
     }
 
     window.addEventListener(
       "scroll",
-      updateHeader,
+      function () {
+
+        if (!scrollTicking) {
+
+          window.requestAnimationFrame(updateHeaderOnScroll);
+
+          scrollTicking = true;
+        }
+
+      },
       { passive: true }
     );
 
-    updateHeader();
+    updateHeaderOnScroll();
+
+
+    /* =======================================
+       BACK/FORWARD CACHE RESTORATION
+    ======================================== */
+
+    window.addEventListener("pageshow", function (event) {
+
+      if (event.persisted) {
+
+        // Avoid leaving the overlay stuck after browser Back.
+        hideIntro();
+
+        isOpeningHub = false;
+
+        lastScrollY = Math.max(0, window.scrollY);
+
+        siteHeader.classList.remove("header-hidden");
+      }
+
+    });
 
 
     /* =======================================
