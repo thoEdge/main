@@ -23,65 +23,17 @@ body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(2
 /* THREE-SECOND LOGO INTRO */
 #logoIntro{position:fixed;inset:0;z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:#07070a;opacity:1;visibility:visible}
 #logoIntro.hide{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .4s ease,visibility .4s ease}
-.logo-orbit{
-  position:relative;
-  width:min(78vw,310px);
-  height:min(78vw,310px);
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  animation:orbitEntrance 2.6s ease-in-out both;
-  flex-shrink:0;
-}
-
-.logo-orbit::before,
-.logo-orbit::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:50%;
-  border:2px solid transparent;
-}
-
-.logo-orbit::before{
-  border-top-color:#00f0ff;
-  border-right-color:#00aaff;
-  animation:spinOrbit 1.2s linear infinite;
-}
-
-.logo-orbit::after{
-  inset:8px;
-  border-bottom-color:#8b5cf6;
-  border-left-color:#ec4899;
-  animation:spinOrbitReverse 1.7s linear infinite;
-}
-
-.logo-circle{
-  width:calc(100% - 32px);
-  height:calc(100% - 32px);
-  display:grid;
-  place-items:center;
-  overflow:hidden;
-  border-radius:50%;
-  border:2px solid #00f0ff;
-  background:#fff;
-  box-shadow:0 0 30px rgba(0,240,255,.3);
-}
-
-.logo-circle img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  padding:0;
-  border-radius:50%;
-}
-
-#logoIntro h2,
-#logoIntro p,
-.intro-loader{
-  display:none!important;
-}
+.logo-orbit{position:relative;width:min(78vw,310px);height:min(78vw,310px);display:grid;place-items:center;border-radius:50%;animation:orbitEntrance 2.6s ease-in-out both;flex-shrink:0}
+.logo-orbit::before,.logo-orbit::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid transparent}
+.logo-orbit::before{border-top-color:#00f0ff;border-right-color:#00aaff;animation:spinOrbit 1.2s linear infinite}
+.logo-orbit::after{inset:8px;border-bottom-color:#8b5cf6;border-left-color:#ec4899;animation:spinOrbitReverse 1.7s linear infinite}
+.logo-circle{width:calc(100% - 32px);height:calc(100% - 32px);display:grid;place-items:center;overflow:hidden;border-radius:50%;border:2px solid rgba(0,240,255,.9);background:#fff;box-shadow:0 0 30px rgba(0,240,255,.3)}
+.logo-circle img{display:block;width:100%;height:100%;object-fit:contain;padding:0;border-radius:50%}
+#logoIntro h2{font-size:23px;letter-spacing:4px;font-weight:800;color:#fff;text-align:center}
+#logoIntro h2 span{background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+#logoIntro p{color:var(--cyan);font-size:11px;letter-spacing:3px;text-align:center}
+#logoIntro h2,#logoIntro p,.intro-loader{display:none!important}
+.intro-loader{width:150px;height:3px;margin-top:7px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}
 .intro-loader span{display:block;width:40%;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--cyan),var(--purple));animation:loadLine 2.6s ease-in-out forwards}
 @keyframes spinOrbit{to{transform:rotate(360deg)}}
 @keyframes spinOrbitReverse{to{transform:rotate(-360deg)}}
@@ -93,7 +45,7 @@ header{position:sticky;top:0;z-index:100;background:rgba(7,7,10,.88);backdrop-fi
 header.hidden{transform:translateY(-110%)}
 .nav{max-width:1200px;margin:auto;padding:12px 20px;min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative}
 .brand{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none}
-.brand img{width:46px;height:46px;object-fit:contain;border-radius:10px;background:#fff;padding:3px}
+.brand img{width:48px;height:48px;object-fit:contain;border-radius:10px;background:#fff;padding:3px;flex:0 0 48px}
 .wordmark{font-size:22px;font-weight:800;letter-spacing:-.5px;color:#fff}
 .wordmark b{background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
 .links{display:flex;gap:6px}
@@ -181,6 +133,7 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
     <div class="logo-circle">
       <img src="logo.png" alt="thoEdge logo" onerror="this.style.display='none'">
     </div>
+  </div>
 </div>
 
 <header id="hd">
