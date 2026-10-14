@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -39,6 +39,9 @@
       --muted: #a7b1cc;
 
       --border: rgba(255, 255, 255, 0.11);
+
+      /* Total intro length (keep in sync with INTRO_DURATION in JS) */
+      --intro-time: 2.8s;
     }
 
     * {
@@ -155,9 +158,8 @@
 
 
     /* =========================================
-       2. OPENING SCREEN
-       LOGO + CIRCLE + AIRPLANE
-       NO TEXT
+       2. OPENING / HUB-TRANSITION SCREEN
+       LOGO FITTED INSIDE CIRCLE + AIRPLANE
     ========================================= */
 
     #intro {
@@ -174,7 +176,7 @@
 
       background:
         radial-gradient(
-          circle at 50% 48%,
+          circle at 50% 50%,
           rgba(80, 234, 255, 0.13),
           transparent 31%
         ),
@@ -189,8 +191,8 @@
       visibility: visible;
 
       transition:
-        opacity 0.45s ease,
-        visibility 0.45s ease;
+        opacity 0.5s ease,
+        visibility 0.5s ease;
     }
 
     #intro.hide {
@@ -239,13 +241,13 @@
       animation: starsDrift 15s linear infinite;
     }
 
-    /* Main animation stage */
+    /* Main animation stage (perfectly centered square) */
 
     .flight-stage {
       position: relative;
 
       width: 320px;
-      height: 350px;
+      height: 320px;
 
       display: flex;
       align-items: center;
@@ -266,15 +268,17 @@
       align-items: center;
       justify-content: center;
 
-      border: 1px solid rgba(80, 234, 255, 0.8);
+      border: 2px solid rgba(80, 234, 255, 0.85);
       border-radius: 50%;
 
       box-shadow:
-        0 0 20px rgba(80, 234, 255, 0.22),
-        0 0 50px rgba(80, 234, 255, 0.12),
-        inset 0 0 30px rgba(80, 234, 255, 0.08);
+        0 0 20px rgba(80, 234, 255, 0.28),
+        0 0 50px rgba(80, 234, 255, 0.14),
+        inset 0 0 30px rgba(80, 234, 255, 0.1);
 
-      animation: circleEntrance 1.25s ease-out both;
+      will-change: transform, opacity;
+
+      animation: circleEntrance 1s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 
     /* Purple orbital ring */
@@ -290,8 +294,7 @@
 
       transform: rotate(-20deg) scaleY(0.84);
 
-      box-shadow:
-        0 0 20px rgba(168, 121, 255, 0.14);
+      box-shadow: 0 0 20px rgba(168, 121, 255, 0.14);
     }
 
     /* Pink dotted orbital ring */
@@ -312,27 +315,27 @@
 
     .orbit-glow {
       position: absolute;
-      inset: 8px;
+      inset: -6px;
 
-      z-index: 1;
+      z-index: 0;
 
       border-radius: 50%;
 
       background: radial-gradient(
         circle,
-        rgba(80, 234, 255, 0.2),
-        rgba(168, 121, 255, 0.09) 55%,
+        rgba(80, 234, 255, 0.28),
+        rgba(168, 121, 255, 0.12) 60%,
         transparent 76%
       );
 
       animation: glowPulse 2.4s ease-in-out infinite;
     }
 
-    /* Actual logo image: ONE IMAGE ONLY */
+    /* Logo disc: fills the whole circle, logo + text sit fully inside */
 
     .orbit-logo {
       position: absolute;
-      inset: 0;
+      inset: 7px;
 
       z-index: 2;
 
@@ -341,7 +344,14 @@
       justify-content: center;
 
       overflow: hidden;
+
       border-radius: 50%;
+
+      background: #ffffff;
+
+      box-shadow:
+        inset 0 0 0 1px rgba(80, 234, 255, 0.35),
+        inset 0 0 22px rgba(100, 140, 255, 0.18);
 
       pointer-events: none;
     }
@@ -349,16 +359,28 @@
     .orbit-logo img {
       display: block;
 
-      width: 48px;
-      height: 48px;
-
-      max-width: 48px;
+      width: 78%;
+      height: auto;
+      max-width: 78%;
+      max-height: 78%;
 
       object-fit: contain;
       object-position: center;
     }
 
-    /* Airplane path */
+    .orbit-logo .logo-fallback {
+      color: #0b1022;
+
+      font-size: 2rem;
+      font-weight: 950;
+      letter-spacing: -1px;
+    }
+
+    .orbit-logo .logo-fallback span {
+      color: #2f6bff;
+    }
+
+    /* Airplane orbit path (rotates around the circle) */
 
     .aircraft-path {
       position: absolute;
@@ -368,76 +390,93 @@
 
       border-radius: 50%;
 
-      animation: airplaneOrbit 3s linear forwards;
+      will-change: transform;
+
+      animation: airplaneOrbit var(--intro-time) cubic-bezier(0.45, 0, 0.35, 1) forwards;
     }
 
-    /* Airplane */
+    /* Airplane holder: sits exactly on the path edge, nose along the flight direction */
 
     .aircraft {
       position: absolute;
 
       top: 50%;
-      right: -10px;
+      right: 0;
+
+      width: 30px;
+      height: 30px;
+
+      transform: translate(50%, -50%) rotate(180deg);
+    }
+
+    /* Plane + tail move together during take-off */
+
+    .plane-fly {
+      position: relative;
+
+      width: 100%;
+      height: 100%;
+
+      will-change: transform, opacity;
+
+      animation: planeDeparture var(--intro-time) cubic-bezier(0.5, 0, 0.9, 0.6) forwards;
+    }
+
+    .plane-fly svg {
+      position: relative;
 
       display: block;
 
+      width: 100%;
+      height: 100%;
+
       color: #ffffff;
 
-      font-size: 28px;
-      line-height: 1;
-
       filter:
-        drop-shadow(0 0 5px var(--cyan))
-        drop-shadow(0 0 13px rgba(80, 234, 255, 0.8));
-
-      transform: translateY(-50%) rotate(90deg);
-
-      animation: planeDeparture 3s ease-in forwards;
+        drop-shadow(0 0 4px var(--cyan))
+        drop-shadow(0 0 12px rgba(80, 234, 255, 0.8));
     }
 
-    /* Aircraft takeoff trail */
+    /* Glowing tail behind the plane */
 
-    .takeoff-trail {
+    .plane-fly::after {
+      content: "";
+
       position: absolute;
 
-      z-index: 0;
-
-      top: 22px;
+      top: 100%;
       left: 50%;
 
       width: 3px;
-      height: 0;
+      height: 46px;
+
+      margin-top: -4px;
 
       border-radius: 20px;
 
       background: linear-gradient(
-        to top,
-        transparent,
-        var(--purple),
-        var(--cyan)
+        to bottom,
+        rgba(80, 234, 255, 0.85),
+        rgba(168, 121, 255, 0.4),
+        transparent
       );
-
-      box-shadow:
-        0 0 12px rgba(80, 234, 255, 0.65);
-
-      opacity: 0;
 
       transform: translateX(-50%);
 
-      animation: trailDeparture 3s ease-in forwards;
+      opacity: 0.9;
     }
 
-    /* Opening animation */
+    /* Animations */
 
     @keyframes circleEntrance {
       0% {
         opacity: 0;
-        transform: scale(0.4) rotate(-25deg);
+        transform: scale(0.45) rotate(-25deg);
       }
 
       65% {
         opacity: 1;
-        transform: scale(1.05) rotate(5deg);
+        transform: scale(1.04) rotate(4deg);
       }
 
       100% {
@@ -455,54 +494,43 @@
 
       50% {
         opacity: 1;
-        transform: scale(1.03);
+        transform: scale(1.04);
       }
     }
+
+    /* Airplane flies 1¾ turns around the circle and finishes at the top */
 
     @keyframes airplaneOrbit {
       0% {
         transform: rotate(0deg);
+        opacity: 0;
       }
 
-      75% {
-        transform: rotate(270deg);
+      8% {
+        opacity: 1;
+      }
+
+      80% {
+        transform: rotate(630deg);
       }
 
       100% {
-        transform: rotate(360deg);
+        transform: rotate(630deg);
       }
     }
+
+    /* Then it leaves along its flight direction and fades away */
 
     @keyframes planeDeparture {
-      0% {
-        transform: translateY(-50%) rotate(90deg);
-      }
-
-      65% {
-        transform: translateY(-50%) rotate(90deg);
-      }
-
-      82% {
-        transform: translate(12px, -25px) rotate(45deg);
-      }
-
-      100% {
-        transform: translate(65px, -100px) rotate(0deg);
-        opacity: 0;
-      }
-    }
-
-    @keyframes trailDeparture {
       0%,
-      68% {
-        height: 0;
-        opacity: 0;
+      80% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
       }
 
       100% {
-        height: 95px;
-        opacity: 0.8;
-        transform: translate(-50%, -25px) rotate(25deg);
+        transform: translateY(-190px) scale(0.55);
+        opacity: 0;
       }
     }
 
@@ -695,8 +723,7 @@
         #8db9ff
       );
 
-      box-shadow:
-        0 10px 30px rgba(80, 234, 255, 0.13);
+      box-shadow: 0 10px 30px rgba(80, 234, 255, 0.13);
     }
 
     .button-secondary {
@@ -1348,8 +1375,7 @@
       .flight-orbit,
       .orbit-glow,
       .aircraft-path,
-      .aircraft,
-      .takeoff-trail {
+      .plane-fly {
         animation: none !important;
       }
 
@@ -1358,7 +1384,7 @@
         transform: none;
       }
 
-      .aircraft {
+      .aircraft-path {
         display: none;
       }
 
@@ -1380,9 +1406,8 @@
 <body>
 
   <!-- =======================================
-       OPENING ANIMATION
-       LOGO + CIRCLE + AIRPLANE
-       NO TEXT
+       OPENING / HUB-TRANSITION ANIMATION
+       LOGO FITTED IN CIRCLE + AIRPLANE
   ======================================== -->
 
   <div id="intro" aria-label="Animated logo introduction">
@@ -1395,24 +1420,27 @@
 
         <div class="orbit-glow"></div>
 
-        <!-- One centered logo image -->
+        <!-- Logo fills the circle -->
 
         <div class="orbit-logo">
           <img
+            id="introLogo"
             src="logo.png"
             alt="thoEdge logo"
-            width="48"
-            height="48"
           >
         </div>
 
         <div class="aircraft-path">
-          <span class="aircraft" aria-hidden="true">✈</span>
+          <span class="aircraft" aria-hidden="true">
+            <span class="plane-fly">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 1.5c.9 0 1.6 1 1.6 2.3v5.6l8.4 5v2.2l-8.4-2.5v4.2l2.2 1.7v1.8L12 20.9l-3.8 1.1v-1.8l2.2-1.7v-4.2L2 16.6v-2.2l8.4-5V3.8c0-1.3.7-2.3 1.6-2.3z"/>
+              </svg>
+            </span>
+          </span>
         </div>
 
       </div>
-
-      <div class="takeoff-trail"></div>
 
     </div>
 
@@ -1936,14 +1964,33 @@
 
     const orbit = intro.querySelector(".flight-orbit");
     const aircraftPath = intro.querySelector(".aircraft-path");
-    const aircraft = intro.querySelector(".aircraft");
-    const trail = intro.querySelector(".takeoff-trail");
+    const planeFly = intro.querySelector(".plane-fly");
+    const introLogo = document.getElementById("introLogo");
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
 
     let introTimer = null;
     let isOpeningHub = false;
 
-    const INTRO_DURATION = 3000;
+    // Must match --intro-time (2.8s) in the CSS.
+    const INTRO_DURATION = reduceMotion ? 700 : 2800;
+
     const RETURN_FLAG = "thoEdgeReturnFromHub";
+
+
+    /* =======================================
+       LOGO FALLBACK
+       (shows text if logo.png is missing)
+    ======================================== */
+
+    introLogo.addEventListener("error", function () {
+      const fallback = document.createElement("div");
+      fallback.className = "logo-fallback";
+      fallback.innerHTML = "tho<span>Edge</span>";
+      introLogo.replaceWith(fallback);
+    });
 
 
     /* =======================================
@@ -1963,18 +2010,23 @@
 
 
     /* =======================================
-       SHOW INTRO
+       SHOW INTRO (plays from the start)
     ======================================== */
 
     function showIntro() {
       clearTimeout(introTimer);
 
+      // Make it visible instantly, then replay the animation.
+      intro.style.transition = "none";
       intro.classList.remove("hide");
+
+      void intro.offsetWidth;
+
+      intro.style.transition = "";
 
       restartAnimation(orbit);
       restartAnimation(aircraftPath);
-      restartAnimation(aircraft);
-      restartAnimation(trail);
+      restartAnimation(planeFly);
     }
 
 
@@ -1989,7 +2041,9 @@
 
 
     /* =======================================
-       INITIAL INTRO AND BACK NAVIGATION
+       INITIAL INTRO
+       Plays on first visit. Skipped once when
+       the visitor comes back from a hub.
     ======================================== */
 
     let returningFromHub = false;
@@ -2005,33 +2059,27 @@
       returningFromHub = false;
     }
 
-    function startInitialIntro() {
-      if (returningFromHub) {
-        hideIntro();
-        return;
-      }
+    if (returningFromHub) {
 
-      showIntro();
+      // Coming back from a hub: show the normal website straight away.
+      intro.style.transition = "none";
+      intro.classList.add("hide");
 
-      introTimer = setTimeout(function () {
-        hideIntro();
-      }, INTRO_DURATION);
-    }
+      void intro.offsetWidth;
 
-    if (document.readyState === "complete") {
-      startInitialIntro();
+      intro.style.transition = "";
+
     } else {
-      window.addEventListener(
-        "load",
-        startInitialIntro,
-        { once: true }
-      );
+
+      // First visit: play the animation, then reveal the website.
+      introTimer = setTimeout(hideIntro, INTRO_DURATION);
+
     }
 
 
     /* =======================================
        HUB NAVIGATION
-       KEEP INTRO VISIBLE UNTIL NAVIGATION
+       Animation plays every time a hub is opened
     ======================================== */
 
     document.addEventListener("click", function (event) {
@@ -2043,9 +2091,7 @@
       /*
         Preserve normal browser behavior for:
         - Opening a link in a new tab
-        - Ctrl-click
-        - Shift-click
-        - Middle-click
+        - Ctrl-click, Shift-click, middle-click
       */
 
       if (
@@ -2068,22 +2114,13 @@
 
       const destination = link.href;
 
-      /*
-        Keep the intro visible during the animation.
-        This prevents the landing page from flashing
-        before the destination opens.
-      */
-
+      // Play the logo + airplane animation again.
       showIntro();
 
       introTimer = setTimeout(function () {
 
-        /*
-          Store a one-time session flag immediately
-          before same-tab navigation. If the visitor
-          returns, the intro is skipped once.
-        */
-
+        // One-time flag so the main website appears
+        // normally when the visitor comes back.
         try {
           sessionStorage.setItem(RETURN_FLAG, "1");
         } catch (error) {
@@ -2154,17 +2191,14 @@
 
       if (currentY < 60) {
 
-        // Always show the toolbar near the top.
         siteHeader.classList.remove("header-hidden");
 
       } else if (currentY > lastScrollY + 2) {
 
-        // Scrolling down: hide the toolbar.
         siteHeader.classList.add("header-hidden");
 
       } else if (currentY < lastScrollY - 2) {
 
-        // Scrolling up: reveal the toolbar.
         siteHeader.classList.remove("header-hidden");
 
       }
@@ -2192,17 +2226,31 @@
 
 
     /* =======================================
-       BACK/FORWARD CACHE RESTORATION
+       BACK / FORWARD CACHE RESTORATION
+       Clears the overlay so the website shows
+       normally after pressing Back from a hub.
     ======================================== */
 
     window.addEventListener("pageshow", function (event) {
 
       if (event.persisted) {
 
-        // Avoid leaving the overlay stuck after browser Back.
-        hideIntro();
+        clearTimeout(introTimer);
+
+        intro.style.transition = "none";
+        intro.classList.add("hide");
+
+        void intro.offsetWidth;
+
+        intro.style.transition = "";
 
         isOpeningHub = false;
+
+        try {
+          sessionStorage.removeItem(RETURN_FLAG);
+        } catch (error) {
+          // Ignore storage errors.
+        }
 
         lastScrollY = Math.max(0, window.scrollY);
 
@@ -2264,5 +2312,4 @@
   </script>
 
 </body>
-
 </html>
