@@ -1,30 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080b18">
-  <meta name="description" content="thoEdge — your destination for boards, JEE, engineering, technology skills, GATE and careers.">
 
-  <title>thoEdge — Learn Beyond Limits</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta name="theme-color" content="#060918">
+
+  <meta
+    name="description"
+    content="thoEdge — explore Boards, JEE, Engineering, Tech Skills, GATE and Career learning hubs."
+  >
+
+  <title>thoEdge | Learn Beyond Limits</title>
 
   <style>
-    /* ==============================
-       GLOBAL STYLES
-    ============================== */
+    /* =========================================
+       1. GLOBAL SETTINGS
+    ========================================= */
 
     :root {
-      --bg: #080b18;
-      --card: #11182b;
+      --bg: #060918;
+      --bg-light: #0b1022;
+      --card: #10172a;
+
       --cyan: #50eaff;
       --blue: #648cff;
       --purple: #a879ff;
       --pink: #ff79c8;
       --gold: #ffd779;
       --green: #74ffd2;
+
       --text: #f5f7ff;
       --muted: #a7b1cc;
-      --border: rgba(255,255,255,.11);
+
+      --border: rgba(255, 255, 255, 0.11);
     }
 
     * {
@@ -35,19 +49,34 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 90px;
+      scroll-padding-top: 85px;
     }
 
     body {
       min-height: 100vh;
       overflow-x: hidden;
+
       color: var(--text);
-      font-family: "Segoe UI", Arial, sans-serif;
+
+      font-family:
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
       line-height: 1.6;
 
       background:
-        radial-gradient(circle at 10% 8%, rgba(80,234,255,.09), transparent 28%),
-        radial-gradient(circle at 90% 25%, rgba(168,121,255,.11), transparent 30%),
+        radial-gradient(
+          circle at 8% 8%,
+          rgba(80, 234, 255, 0.08),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 92% 24%,
+          rgba(168, 121, 255, 0.09),
+          transparent 30%
+        ),
         var(--bg);
     }
 
@@ -60,9 +89,13 @@
       font: inherit;
     }
 
+    img {
+      max-width: 100%;
+    }
+
     .container {
       width: min(1160px, 91%);
-      margin: auto;
+      margin-inline: auto;
     }
 
     .section {
@@ -71,33 +104,46 @@
 
     .gradient-text {
       color: transparent;
-      background: linear-gradient(100deg, var(--cyan), var(--blue), var(--purple), var(--pink));
+
+      background: linear-gradient(
+        100deg,
+        var(--cyan),
+        var(--blue),
+        var(--purple),
+        var(--pink)
+      );
+
       background-clip: text;
       -webkit-background-clip: text;
     }
 
     .section-heading {
       max-width: 720px;
-      margin: 0 auto 40px;
+      margin: 0 auto 42px;
       text-align: center;
     }
 
     .eyebrow {
       display: inline-block;
+
       margin-bottom: 15px;
       padding: 7px 14px;
-      border: 1px solid rgba(80,234,255,.25);
+
+      border: 1px solid rgba(80, 234, 255, 0.25);
       border-radius: 30px;
+
       color: var(--cyan);
-      background: rgba(80,234,255,.05);
-      font-size: .76rem;
+      background: rgba(80, 234, 255, 0.05);
+
+      font-size: 0.76rem;
       font-weight: 800;
       letter-spacing: 1.5px;
       text-transform: uppercase;
     }
 
     .section-heading h2 {
-      margin-bottom: 12px;
+      margin-bottom: 13px;
+
       font-size: clamp(2rem, 5vw, 3.2rem);
       line-height: 1.2;
       letter-spacing: -1px;
@@ -108,14 +154,16 @@
     }
 
 
-    /* ==============================
-       LOGO INTRO
-       LOGO ONLY — NO TEXT
-    ============================== */
+    /* =========================================
+       2. OPENING SCREEN
+       LOGO + CIRCLE + AIRPLANE
+       NO TEXT
+    ========================================= */
 
     #intro {
       position: fixed;
       inset: 0;
+
       z-index: 99999;
 
       display: flex;
@@ -125,14 +173,24 @@
       overflow: hidden;
 
       background:
-        radial-gradient(circle at center, rgba(80,234,255,.12), transparent 32%),
-        radial-gradient(circle at center, rgba(168,121,255,.10), transparent 50%),
-        #070a15;
+        radial-gradient(
+          circle at 50% 48%,
+          rgba(80, 234, 255, 0.13),
+          transparent 31%
+        ),
+        radial-gradient(
+          circle at 50% 50%,
+          rgba(168, 121, 255, 0.12),
+          transparent 55%
+        ),
+        #050816;
 
       opacity: 1;
       visibility: visible;
 
-      transition: opacity .4s ease, visibility .4s ease;
+      transition:
+        opacity 0.45s ease,
+        visibility 0.45s ease;
     }
 
     #intro.hide {
@@ -141,30 +199,64 @@
       pointer-events: none;
     }
 
-    .intro-grid {
+    /* Moving star background */
+
+    .space-stars {
       position: absolute;
-      inset: 0;
+      inset: -100px;
+
+      pointer-events: none;
 
       background-image:
-        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+        radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.85) 1px,
+          transparent 1.6px
+        ),
+        radial-gradient(
+          circle,
+          rgba(80, 234, 255, 0.8) 1px,
+          transparent 1.6px
+        ),
+        radial-gradient(
+          circle,
+          rgba(168, 121, 255, 0.8) 1px,
+          transparent 1.6px
+        );
 
-      background-size: 48px 48px;
+      background-size:
+        83px 83px,
+        127px 127px,
+        171px 171px;
 
-      mask-image: radial-gradient(ellipse at center, black, transparent 75%);
-      -webkit-mask-image: radial-gradient(ellipse at center, black, transparent 75%);
+      background-position:
+        0 0,
+        37px 53px,
+        72px 19px;
+
+      opacity: 0.45;
+
+      animation: starsDrift 15s linear infinite;
     }
 
-    .intro-content {
+    /* Main animation stage */
+
+    .flight-stage {
       position: relative;
-      z-index: 2;
+
+      width: 320px;
+      height: 350px;
 
       display: flex;
       align-items: center;
       justify-content: center;
+
+      isolation: isolate;
     }
 
-    .logo-orbit {
+    /* Main circular logo frame */
+
+    .flight-orbit {
       position: relative;
 
       width: 220px;
@@ -174,91 +266,178 @@
       align-items: center;
       justify-content: center;
 
-      animation: logoEntrance 2.6s cubic-bezier(.2,.7,.2,1) both;
-    }
-
-    .orbit-ring {
-      position: absolute;
-      inset: 0;
-
-      border: 1px solid rgba(80,234,255,.7);
+      border: 1px solid rgba(80, 234, 255, 0.8);
       border-radius: 50%;
 
       box-shadow:
-        0 0 22px rgba(80,234,255,.15),
-        inset 0 0 22px rgba(80,234,255,.06);
+        0 0 20px rgba(80, 234, 255, 0.22),
+        0 0 50px rgba(80, 234, 255, 0.12),
+        inset 0 0 30px rgba(80, 234, 255, 0.08);
 
-      animation: ringSpin 9s linear infinite;
+      animation: circleEntrance 1.25s ease-out both;
     }
 
-    .orbit-ring::before,
-    .orbit-ring::after {
+    /* Purple orbital ring */
+
+    .flight-orbit::before {
       content: "";
+
       position: absolute;
-      width: 10px;
-      height: 10px;
+      inset: -14px;
+
+      border: 1px solid rgba(168, 121, 255, 0.65);
+      border-radius: 50%;
+
+      transform: rotate(-20deg) scaleY(0.84);
+
+      box-shadow:
+        0 0 20px rgba(168, 121, 255, 0.14);
+    }
+
+    /* Pink dotted orbital ring */
+
+    .flight-orbit::after {
+      content: "";
+
+      position: absolute;
+      inset: -27px;
+
+      border: 1px dashed rgba(255, 121, 200, 0.38);
+      border-radius: 50%;
+
+      transform: rotate(25deg) scaleY(0.9);
+    }
+
+    /* Glow behind logo */
+
+    .orbit-glow {
+      position: absolute;
+      inset: 8px;
+
+      z-index: 1;
+
+      border-radius: 50%;
+
+      background: radial-gradient(
+        circle,
+        rgba(80, 234, 255, 0.2),
+        rgba(168, 121, 255, 0.09) 55%,
+        transparent 76%
+      );
+
+      animation: glowPulse 2.4s ease-in-out infinite;
+    }
+
+    /* Actual logo image */
+
+    .orbit-logo {
+      position: absolute;
+      inset: 0;
+
+      z-index: 2;
+
+      overflow: hidden;
       border-radius: 50%;
     }
 
-    .orbit-ring::before {
-      top: 18px;
-      left: 25px;
-      background: var(--cyan);
-      box-shadow: 0 0 18px var(--cyan);
+    .orbit-logo img {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+      object-position: center;
+
+      border-radius: 50%;
     }
 
-    .orbit-ring::after {
-      right: 15px;
-      bottom: 38px;
-      background: var(--pink);
-      box-shadow: 0 0 18px var(--pink);
-    }
+    /*
+      The image fills the entire circular frame.
+      Use object-fit: contain if your logo should
+      remain completely visible without cropping.
+    */
 
-    .orbit-ring.ring-two {
-      inset: 16px;
-      border-color: rgba(168,121,255,.75);
-      animation: ringSpinReverse 7s linear infinite;
-    }
+    /* Airplane path */
 
-    .orbit-ring.ring-two::before {
-      background: var(--purple);
-      box-shadow: 0 0 18px var(--purple);
-    }
+    .aircraft-path {
+      position: absolute;
+      inset: -29px;
 
-    .orbit-ring.ring-two::after {
-      background: var(--blue);
-      box-shadow: 0 0 18px var(--blue);
-    }
-
-    /* Your actual logo image */
-
-    .intro-logo-image {
-      position: relative;
       z-index: 5;
+
+      border-radius: 50%;
+
+      animation: airplaneOrbit 3s linear forwards;
+    }
+
+    /* Airplane */
+
+    .aircraft {
+      position: absolute;
+
+      top: 50%;
+      right: -10px;
 
       display: block;
 
-      width: 125px;
-      height: 125px;
+      color: #ffffff;
 
-      object-fit: contain;
+      font-size: 28px;
+      line-height: 1;
 
-      filter: drop-shadow(0 0 14px rgba(80,234,255,.35));
+      filter:
+        drop-shadow(0 0 5px var(--cyan))
+        drop-shadow(0 0 13px rgba(80, 234, 255, 0.8));
+
+      transform: translateY(-50%) rotate(90deg);
+
+      animation: planeDeparture 3s ease-in forwards;
     }
 
-    @keyframes logoEntrance {
+    /* Aircraft takeoff trail */
+
+    .takeoff-trail {
+      position: absolute;
+
+      z-index: 0;
+
+      top: 22px;
+      left: 50%;
+
+      width: 3px;
+      height: 0;
+
+      border-radius: 20px;
+
+      background: linear-gradient(
+        to top,
+        transparent,
+        var(--purple),
+        var(--cyan)
+      );
+
+      box-shadow:
+        0 0 12px rgba(80, 234, 255, 0.65);
+
+      opacity: 0;
+
+      transform: translateX(-50%);
+
+      animation: trailDeparture 3s ease-in forwards;
+    }
+
+    /* Opening animation */
+
+    @keyframes circleEntrance {
       0% {
         opacity: 0;
-        transform: scale(.45) rotate(-35deg);
+        transform: scale(0.4) rotate(-25deg);
       }
 
-      40% {
+      65% {
         opacity: 1;
-        transform: scale(1.08) rotate(10deg);
-      }
-
-      70% {
-        transform: scale(.97) rotate(-4deg);
+        transform: scale(1.05) rotate(5deg);
       }
 
       100% {
@@ -267,33 +446,104 @@
       }
     }
 
-    @keyframes ringSpin {
-      to { transform: rotate(360deg); }
+    @keyframes glowPulse {
+      0%,
+      100% {
+        opacity: 0.55;
+        transform: scale(0.96);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.03);
+      }
     }
 
-    @keyframes ringSpinReverse {
-      to { transform: rotate(-360deg); }
+    @keyframes airplaneOrbit {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      75% {
+        transform: rotate(270deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes planeDeparture {
+      0% {
+        transform: translateY(-50%) rotate(90deg);
+      }
+
+      65% {
+        transform: translateY(-50%) rotate(90deg);
+      }
+
+      82% {
+        transform: translate(12px, -25px) rotate(45deg);
+      }
+
+      100% {
+        transform: translate(65px, -100px) rotate(0deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes trailDeparture {
+      0%,
+      68% {
+        height: 0;
+        opacity: 0;
+      }
+
+      100% {
+        height: 95px;
+        opacity: 0.8;
+        transform: translate(-50%, -25px) rotate(25deg);
+      }
+    }
+
+    @keyframes starsDrift {
+      from {
+        background-position:
+          0 0,
+          37px 53px,
+          72px 19px;
+      }
+
+      to {
+        background-position:
+          0 170px,
+          37px 305px,
+          72px 360px;
+      }
     }
 
 
-    /* ==============================
-       HEADER
-    ============================== */
+    /* =========================================
+       3. HEADER
+    ========================================= */
 
     .site-header {
       position: sticky;
       top: 0;
+
       z-index: 1000;
 
       padding: 15px 0;
 
-      background: rgba(8,11,24,.8);
-      border-bottom: 1px solid rgba(255,255,255,.07);
+      background: rgba(8, 11, 24, 0.82);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
 
-      transition: transform .25s ease, opacity .25s ease;
+      transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
     }
 
     .site-header.header-hidden {
@@ -304,8 +554,8 @@
 
     .header-inner {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
     }
 
     .wordmark {
@@ -314,21 +564,23 @@
       letter-spacing: -1px;
     }
 
-    .wordmark span,
-    .footer-brand span {
+    .wordmark span {
       color: var(--cyan);
     }
 
 
-    /* ==============================
-       HERO
-    ============================== */
+    /* =========================================
+       4. HERO SECTION
+    ========================================= */
 
     .hero {
       min-height: 570px;
+
       display: flex;
       align-items: center;
+
       padding: 85px 0;
+
       text-align: center;
     }
 
@@ -348,25 +600,31 @@
       border: 1px solid var(--border);
       border-radius: 30px;
 
-      background: rgba(255,255,255,.035);
+      background: rgba(255, 255, 255, 0.035);
+
       color: #dce5ff;
 
-      font-size: .82rem;
+      font-size: 0.82rem;
       font-weight: 700;
     }
 
     .live-dot {
       width: 8px;
       height: 8px;
+
       border-radius: 50%;
+
       background: var(--green);
+
       box-shadow: 0 0 12px var(--green);
     }
 
     .hero h1 {
       margin-bottom: 22px;
+
       font-size: clamp(2.8rem, 8vw, 6rem);
       font-weight: 950;
+
       letter-spacing: -3px;
       line-height: 1.08;
     }
@@ -377,8 +635,11 @@
 
     .hero-description {
       max-width: 690px;
+
       margin: auto;
+
       color: var(--muted);
+
       font-size: 1.08rem;
       line-height: 1.85;
     }
@@ -386,8 +647,10 @@
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
+
       justify-content: center;
       gap: 14px;
+
       margin-top: 32px;
     }
 
@@ -398,17 +661,20 @@
       gap: 10px;
 
       min-height: 49px;
+
       padding: 12px 23px;
 
       border: 1px solid transparent;
       border-radius: 13px;
 
-      font-size: .92rem;
+      font-size: 0.92rem;
       font-weight: 800;
 
       cursor: pointer;
 
-      transition: transform .25s ease, box-shadow .25s ease;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
     }
 
     .button:hover {
@@ -417,26 +683,36 @@
 
     .button-primary {
       color: #07101c;
-      background: linear-gradient(110deg, var(--cyan), #8db9ff);
-      box-shadow: 0 10px 30px rgba(80,234,255,.13);
+
+      background: linear-gradient(
+        110deg,
+        var(--cyan),
+        #8db9ff
+      );
+
+      box-shadow:
+        0 10px 30px rgba(80, 234, 255, 0.13);
     }
 
     .button-secondary {
       color: var(--text);
-      background: rgba(255,255,255,.035);
+
+      background: rgba(255, 255, 255, 0.035);
       border-color: var(--border);
     }
 
     .hero-note {
       margin-top: 22px;
+
       color: #8793b1;
-      font-size: .8rem;
+
+      font-size: 0.8rem;
     }
 
 
-    /* ==============================
-       STATS
-    ============================== */
+    /* =========================================
+       5. STATISTICS
+    ========================================= */
 
     .stats {
       padding-bottom: 30px;
@@ -445,53 +721,69 @@
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
+
       gap: 15px;
     }
 
     .stat-card {
       padding: 22px 12px;
+
       text-align: center;
+
       border: 1px solid var(--border);
       border-radius: 18px;
-      background: rgba(255,255,255,.025);
+
+      background: rgba(255, 255, 255, 0.025);
     }
 
     .stat-number {
       display: block;
+
       font-size: 1.8rem;
       font-weight: 950;
     }
 
-    .cyan { color: var(--cyan); }
-    .purple { color: var(--purple); }
-    .pink { color: var(--pink); }
+    .cyan {
+      color: var(--cyan);
+    }
+
+    .purple {
+      color: var(--purple);
+    }
+
+    .pink {
+      color: var(--pink);
+    }
 
     .stat-label {
       color: var(--muted);
-      font-size: .83rem;
+      font-size: 0.83rem;
     }
 
 
-    /* ==============================
-       HUB CARDS
-    ============================== */
+    /* =========================================
+       6. HUB CARDS
+    ========================================= */
 
     .hub-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+
       gap: 22px;
     }
 
     .hub-card {
       --accent: var(--cyan);
-      --accent-rgb: 80,234,255;
+      --accent-rgb: 80, 234, 255;
 
       position: relative;
 
       display: flex;
       flex-direction: column;
 
+      min-width: 0;
       min-height: 320px;
+
       padding: 25px;
 
       overflow: hidden;
@@ -500,26 +792,36 @@
       border-radius: 23px;
 
       background:
-        linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.01)),
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.045),
+          rgba(255, 255, 255, 0.01)
+        ),
         var(--card);
 
-      box-shadow: 0 18px 50px rgba(0,0,0,.22);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
 
-      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+      transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
     }
 
     .hub-card::before {
       content: "";
-      position: absolute;
 
-      width: 180px;
-      height: 180px;
+      position: absolute;
 
       top: -100px;
       right: -90px;
 
+      width: 180px;
+      height: 180px;
+
       border-radius: 50%;
-      background: rgba(var(--accent-rgb),.15);
+
+      background: rgba(var(--accent-rgb), 0.15);
+
       filter: blur(40px);
 
       pointer-events: none;
@@ -527,45 +829,49 @@
 
     .hub-card:hover {
       transform: translateY(-8px);
-      border-color: rgba(var(--accent-rgb),.5);
-      box-shadow: 0 25px 60px rgba(0,0,0,.35);
+
+      border-color: rgba(var(--accent-rgb), 0.5);
+
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
     }
 
     .boards {
       --accent: var(--gold);
-      --accent-rgb: 255,215,121;
+      --accent-rgb: 255, 215, 121;
     }
 
     .jee {
       --accent: var(--cyan);
-      --accent-rgb: 80,234,255;
+      --accent-rgb: 80, 234, 255;
     }
 
     .engineering {
       --accent: var(--purple);
-      --accent-rgb: 168,121,255;
+      --accent-rgb: 168, 121, 255;
     }
 
     .skills {
       --accent: var(--green);
-      --accent-rgb: 116,255,210;
+      --accent-rgb: 116, 255, 210;
     }
 
     .gate {
       --accent: var(--pink);
-      --accent-rgb: 255,121,200;
+      --accent-rgb: 255, 121, 200;
     }
 
     .career {
       --accent: #91aaff;
-      --accent-rgb: 145,170,255;
+      --accent-rgb: 145, 170, 255;
     }
 
     .hub-top {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
+
       gap: 12px;
+
       margin-bottom: 23px;
     }
 
@@ -577,10 +883,11 @@
       align-items: center;
       justify-content: center;
 
-      border: 1px solid rgba(var(--accent-rgb),.25);
+      border: 1px solid rgba(var(--accent-rgb), 0.25);
       border-radius: 17px;
 
-      background: rgba(var(--accent-rgb),.09);
+      background: rgba(var(--accent-rgb), 0.09);
+
       color: var(--accent);
 
       font-size: 1.65rem;
@@ -589,34 +896,40 @@
     .hub-code {
       padding: 6px 10px;
 
-      border: 1px solid rgba(var(--accent-rgb),.25);
+      border: 1px solid rgba(var(--accent-rgb), 0.25);
       border-radius: 9px;
 
       color: var(--accent);
-      background: rgba(var(--accent-rgb),.05);
 
-      font-size: .73rem;
+      background: rgba(var(--accent-rgb), 0.05);
+
+      font-size: 0.73rem;
       font-weight: 900;
       letter-spacing: 1px;
     }
 
     .hub-card h3 {
       margin-bottom: 9px;
+
       font-size: 1.35rem;
       font-weight: 900;
     }
 
     .hub-card p {
       margin-bottom: 20px;
+
       color: var(--muted);
-      font-size: .91rem;
+
+      font-size: 0.91rem;
       line-height: 1.8;
     }
 
     .hub-tags {
       display: flex;
       flex-wrap: wrap;
+
       gap: 7px;
+
       margin-top: auto;
       margin-bottom: 22px;
     }
@@ -624,42 +937,46 @@
     .hub-tag {
       padding: 5px 9px;
 
-      border: 1px solid rgba(255,255,255,.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 8px;
 
       color: #bac4dc;
-      background: rgba(255,255,255,.025);
 
-      font-size: .71rem;
+      background: rgba(255, 255, 255, 0.025);
+
+      font-size: 0.71rem;
     }
 
     .hub-link {
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 10px;
 
       padding: 12px 14px;
 
-      border: 1px solid rgba(var(--accent-rgb),.28);
+      border: 1px solid rgba(var(--accent-rgb), 0.28);
       border-radius: 12px;
 
-      background: rgba(var(--accent-rgb),.055);
+      background: rgba(var(--accent-rgb), 0.055);
+
       color: var(--accent);
 
-      font-size: .87rem;
+      font-size: 0.87rem;
       font-weight: 850;
 
-      transition: background .25s ease;
+      transition: background 0.25s ease;
     }
 
     .hub-link:hover {
-      background: rgba(var(--accent-rgb),.13);
+      background: rgba(var(--accent-rgb), 0.13);
     }
 
     .hub-arrow {
       font-size: 1.2rem;
-      transition: transform .25s ease;
+
+      transition: transform 0.25s ease;
     }
 
     .hub-link:hover .hub-arrow {
@@ -667,26 +984,28 @@
     }
 
 
-    /* ==============================
-       LEARNING JOURNEY
-    ============================== */
+    /* =========================================
+       7. LEARNING JOURNEY
+    ========================================= */
 
     .journey-panel {
       padding: 30px;
+
       border: 1px solid var(--border);
       border-radius: 25px;
 
       background: linear-gradient(
         135deg,
-        rgba(80,234,255,.045),
-        rgba(168,121,255,.055),
-        rgba(255,121,200,.035)
+        rgba(80, 234, 255, 0.045),
+        rgba(168, 121, 255, 0.055),
+        rgba(255, 121, 200, 0.035)
       );
     }
 
     .journey-grid {
       display: grid;
-      grid-template-columns: repeat(6, minmax(0,1fr));
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+
       gap: 12px;
     }
 
@@ -695,23 +1014,30 @@
       flex-direction: column;
       align-items: center;
 
+      min-width: 0;
+
       padding: 18px 9px;
 
       border: 1px solid var(--border);
       border-radius: 16px;
 
-      background: rgba(8,11,24,.55);
+      background: rgba(8, 11, 24, 0.55);
+
       color: var(--text);
 
       text-align: center;
+
       cursor: pointer;
 
-      transition: transform .25s ease, border-color .25s ease;
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
     }
 
     .journey-step:hover {
       transform: translateY(-5px);
-      border-color: rgba(80,234,255,.5);
+
+      border-color: rgba(80, 234, 255, 0.5);
     }
 
     .journey-number {
@@ -726,7 +1052,8 @@
 
       border-radius: 12px;
 
-      background: rgba(80,234,255,.1);
+      background: rgba(80, 234, 255, 0.1);
+
       color: var(--cyan);
 
       font-weight: 950;
@@ -734,92 +1061,112 @@
 
     .journey-step:nth-child(2) .journey-number {
       color: var(--blue);
-      background: rgba(100,140,255,.12);
+      background: rgba(100, 140, 255, 0.12);
     }
 
     .journey-step:nth-child(3) .journey-number {
       color: var(--purple);
-      background: rgba(168,121,255,.12);
+      background: rgba(168, 121, 255, 0.12);
     }
 
     .journey-step:nth-child(4) .journey-number {
       color: var(--green);
-      background: rgba(116,255,210,.1);
+      background: rgba(116, 255, 210, 0.1);
     }
 
     .journey-step:nth-child(5) .journey-number {
       color: var(--pink);
-      background: rgba(255,121,200,.1);
+      background: rgba(255, 121, 200, 0.1);
     }
 
     .journey-step:nth-child(6) .journey-number {
       color: var(--gold);
-      background: rgba(255,215,121,.1);
+      background: rgba(255, 215, 121, 0.1);
     }
 
     .journey-step strong {
       margin-bottom: 5px;
-      font-size: .82rem;
+
+      font-size: 0.82rem;
     }
 
     .journey-step small {
       color: var(--muted);
-      font-size: .7rem;
+
+      font-size: 0.7rem;
     }
 
     .journey-hint {
       margin-top: 18px;
+
       color: #8e9ab8;
+
       text-align: center;
-      font-size: .8rem;
+
+      font-size: 0.8rem;
     }
 
 
-    /* ==============================
-       ABOUT
-    ============================== */
+    /* =========================================
+       8. ABOUT SECTION
+       ACTUAL LOGO: 48 x 48
+    ========================================= */
 
     .about-panel {
       max-width: 850px;
+
       margin: auto;
-      padding: clamp(25px,5vw,48px);
+
+      padding: clamp(25px, 5vw, 48px);
 
       border: 1px solid var(--border);
       border-radius: 26px;
 
-      background: rgba(255,255,255,.025);
+      background: rgba(255, 255, 255, 0.025);
+
       text-align: center;
     }
 
     .about-symbol {
-      width: 60px;
-      height: 60px;
+      width: 48px;
+      height: 48px;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      margin: 0 auto 22px;
 
-      margin: 0 auto 18px;
+      overflow: hidden;
 
-      border: 1px solid rgba(80,234,255,.25);
-      border-radius: 18px;
+      border: 1px solid rgba(80, 234, 255, 0.25);
+      border-radius: 12px;
 
-      background: rgba(80,234,255,.07);
-      color: var(--cyan);
+      background: rgba(80, 234, 255, 0.05);
 
-      font-size: 1.6rem;
-      font-weight: 950;
+      box-shadow:
+        0 0 22px rgba(80, 234, 255, 0.15);
+    }
+
+    .about-symbol img {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+      object-position: center;
     }
 
     .about-panel h2 {
       margin-bottom: 15px;
-      font-size: clamp(1.9rem,5vw,2.7rem);
+
+      font-size: clamp(1.9rem, 5vw, 2.7rem);
     }
 
     .about-panel p {
       max-width: 700px;
+
       margin: auto;
+
       color: var(--muted);
+
       line-height: 1.9;
     }
 
@@ -829,20 +1176,23 @@
     }
 
 
-    /* ==============================
-       FOOTER
-    ============================== */
+    /* =========================================
+       9. FOOTER
+    ========================================= */
 
     .site-footer {
       padding: 27px 0;
-      border-top: 1px solid rgba(255,255,255,.07);
-      background: rgba(5,7,16,.45);
+
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+
+      background: rgba(5, 7, 16, 0.45);
     }
 
     .footer-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 18px;
     }
 
@@ -851,27 +1201,38 @@
       font-weight: 950;
     }
 
+    .footer-brand span {
+      color: var(--cyan);
+    }
+
     .footer-copy {
       color: #8490ad;
-      font-size: .79rem;
+
+      font-size: 0.79rem;
+
       text-align: center;
     }
 
     .back-top {
       color: var(--cyan);
-      font-size: .82rem;
+
+      font-size: 0.82rem;
       font-weight: 800;
     }
 
 
-    /* ==============================
-       SCROLL REVEAL
-    ============================== */
+    /* =========================================
+       10. SCROLL REVEAL
+    ========================================= */
 
     .reveal {
       opacity: 0;
+
       transform: translateY(20px);
-      transition: opacity .6s ease, transform .6s ease;
+
+      transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
     }
 
     .reveal.visible {
@@ -880,42 +1241,54 @@
     }
 
 
-    /* ==============================
-       MOBILE RESPONSIVENESS
-    ============================== */
+    /* =========================================
+       11. TABLET RESPONSIVENESS
+    ========================================= */
 
     @media (max-width: 950px) {
+
       .hub-grid {
-        grid-template-columns: repeat(2,minmax(0,1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .journey-grid {
-        grid-template-columns: repeat(3,minmax(0,1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
+
     }
 
+
+    /* =========================================
+       12. MOBILE RESPONSIVENESS
+    ========================================= */
+
     @media (max-width: 600px) {
+
       .section {
         padding: 65px 0;
       }
 
       .hero {
         min-height: auto;
+
         padding: 75px 0 60px;
       }
 
       .hero h1 {
-        font-size: clamp(2.6rem,11vw,4rem);
+        font-size: clamp(2.6rem, 11vw, 4rem);
+
         letter-spacing: -2px;
       }
 
       .hero-description {
-        font-size: .97rem;
+        font-size: 0.97rem;
       }
 
       .hero-actions {
         flex-direction: column;
+
         max-width: 310px;
+
         margin: 30px auto 0;
       }
 
@@ -936,7 +1309,7 @@
       }
 
       .stat-label {
-        font-size: .7rem;
+        font-size: 0.7rem;
       }
 
       .hub-grid {
@@ -952,78 +1325,113 @@
       }
 
       .journey-grid {
-        grid-template-columns: repeat(2,minmax(0,1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .footer-inner {
         flex-direction: column;
       }
 
-      .logo-orbit {
-        width: 190px;
-        height: 190px;
+      .flight-stage {
+        transform: scale(0.85);
       }
 
-      .intro-logo-image {
-        width: 108px;
-        height: 108px;
-      }
     }
 
+
+    /* =========================================
+       13. REDUCED-MOTION ACCESSIBILITY
+    ========================================= */
+
     @media (prefers-reduced-motion: reduce) {
+
       html {
         scroll-behavior: auto;
       }
 
-      *, *::before, *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
+      .space-stars,
+      .flight-orbit,
+      .orbit-glow,
+      .aircraft-path,
+      .aircraft,
+      .takeoff-trail {
+        animation: none !important;
       }
+
+      .flight-orbit {
+        opacity: 1;
+        transform: none;
+      }
+
+      .aircraft {
+        display: none;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+      }
+
     }
+
   </style>
 </head>
 
 <body>
 
-  <!-- ==============================
-       OPENING SCREEN
-       LOGO INSIDE CIRCLE ONLY
-  ============================== -->
+  <!-- =======================================
+       OPENING ANIMATION
+       LOGO + CIRCLE + AIRPLANE
+       NO TEXT
+  ======================================== -->
 
-  <div id="intro" aria-label="Logo introduction">
+  <div id="intro" aria-label="Animated logo introduction">
 
-    <div class="intro-grid"></div>
+    <div class="space-stars"></div>
 
-    <div class="intro-content">
+    <div class="flight-stage">
 
-      <div class="logo-orbit">
+      <div class="flight-orbit">
 
-        <div class="orbit-ring"></div>
-        <div class="orbit-ring ring-two"></div>
+        <div class="orbit-glow"></div>
 
-        <img
-          src="logo.png"
-          alt="thoEdge logo"
-          class="intro-logo-image"
-        >
+        <div class="orbit-logo">
+          <img
+            src="logo.png"
+            alt="thoEdge logo"
+            width="220"
+            height="220"
+          >
+        </div>
+
+        <div class="aircraft-path">
+          <span class="aircraft" aria-hidden="true">✈</span>
+        </div>
 
       </div>
+
+      <div class="takeoff-trail"></div>
 
     </div>
 
   </div>
 
 
-  <!-- ==============================
+  <!-- =======================================
        HEADER
-  ============================== -->
+  ======================================== -->
 
   <header class="site-header" id="siteHeader">
 
     <div class="container header-inner">
 
-      <a href="#home" class="wordmark">
+      <a href="#home" class="wordmark" aria-label="thoEdge home">
         tho<span>Edge</span>
       </a>
 
@@ -1034,9 +1442,9 @@
 
   <main>
 
-    <!-- ==============================
+    <!-- =====================================
          HERO
-    ============================== -->
+    ====================================== -->
 
     <section class="hero" id="home">
 
@@ -1082,9 +1490,9 @@
     </section>
 
 
-    <!-- ==============================
+    <!-- =====================================
          STATS
-    ============================== -->
+    ====================================== -->
 
     <section class="stats">
 
@@ -1110,9 +1518,9 @@
     </section>
 
 
-    <!-- ==============================
-         SIX HUB CARDS
-    ============================== -->
+    <!-- =====================================
+         SIX HUBS
+    ====================================== -->
 
     <section class="section" id="hubs">
 
@@ -1141,16 +1549,15 @@
           <article class="hub-card boards reveal">
 
             <div class="hub-top">
-              <div class="hub-icon">📚</div>
+              <div class="hub-icon" aria-hidden="true">📚</div>
               <span class="hub-code">TBH</span>
             </div>
 
             <h3>Boards Hub</h3>
 
             <p>
-              Your destination for school subjects,
-              board examinations, revision and academic
-              preparation.
+              Your destination for school subjects, board
+              examinations, revision and academic preparation.
             </p>
 
             <div class="hub-tags">
@@ -1165,7 +1572,7 @@
               href="https://thoedge.github.io/TBH/"
             >
               <span>Enter Boards Hub</span>
-              <span class="hub-arrow">→</span>
+              <span class="hub-arrow" aria-hidden="true">→</span>
             </a>
 
           </article>
@@ -1176,7 +1583,7 @@
           <article class="hub-card jee reveal">
 
             <div class="hub-top">
-              <div class="hub-icon">⚡</div>
+              <div class="hub-icon" aria-hidden="true">⚡</div>
               <span class="hub-code">TJH</span>
             </div>
 
@@ -1184,8 +1591,7 @@
 
             <p>
               Build your engineering entrance preparation
-              through concepts, problem-solving and
-              focused practice.
+              through concepts, problem-solving and focused practice.
             </p>
 
             <div class="hub-tags">
@@ -1200,7 +1606,7 @@
               href="https://thoedge.github.io/TJH/"
             >
               <span>Enter JEE Hub</span>
-              <span class="hub-arrow">→</span>
+              <span class="hub-arrow" aria-hidden="true">→</span>
             </a>
 
           </article>
@@ -1211,7 +1617,7 @@
           <article class="hub-card engineering reveal">
 
             <div class="hub-top">
-              <div class="hub-icon">🚀</div>
+              <div class="hub-icon" aria-hidden="true">🚀</div>
               <span class="hub-code">TEH</span>
             </div>
 
@@ -1219,8 +1625,7 @@
 
             <p>
               Explore engineering fields, scientific ideas,
-              technical concepts and the technologies
-              shaping tomorrow.
+              technical concepts and the technologies shaping tomorrow.
             </p>
 
             <div class="hub-tags">
@@ -1235,7 +1640,7 @@
               href="https://thoedge.github.io/TEH/"
             >
               <span>Enter Engineering Hub</span>
-              <span class="hub-arrow">→</span>
+              <span class="hub-arrow" aria-hidden="true">→</span>
             </a>
 
           </article>
@@ -1246,16 +1651,15 @@
           <article class="hub-card skills reveal">
 
             <div class="hub-top">
-              <div class="hub-icon">💻</div>
+              <div class="hub-icon" aria-hidden="true">💻</div>
               <span class="hub-code">TSH</span>
             </div>
 
             <h3>Tech Skills Hub</h3>
 
             <p>
-              Discover programming, digital tools,
-              technical skills and practical learning
-              resources.
+              Discover programming, digital tools, technical skills
+              and practical learning resources.
             </p>
 
             <div class="hub-tags">
@@ -1270,7 +1674,7 @@
               href="https://thoedge.github.io/TSH/"
             >
               <span>Enter Tech Skills Hub</span>
-              <span class="hub-arrow">→</span>
+              <span class="hub-arrow" aria-hidden="true">→</span>
             </a>
 
           </article>
@@ -1281,16 +1685,15 @@
           <article class="hub-card gate reveal">
 
             <div class="hub-top">
-              <div class="hub-icon">🎯</div>
+              <div class="hub-icon" aria-hidden="true">🎯</div>
               <span class="hub-code">TGH</span>
             </div>
 
             <h3>GATE Hub</h3>
 
             <p>
-              Explore postgraduate engineering entrance
-              preparation, core subjects and structured
-              practice.
+              Explore postgraduate engineering entrance preparation,
+              core subjects and structured practice.
             </p>
 
             <div class="hub-tags">
@@ -1305,7 +1708,7 @@
               href="https://thoedge.github.io/TGH/"
             >
               <span>Enter GATE Hub</span>
-              <span class="hub-arrow">→</span>
+              <span class="hub-arrow" aria-hidden="true">→</span>
             </a>
 
           </article>
@@ -1316,7 +1719,7 @@
           <article class="hub-card career reveal">
 
             <div class="hub-top">
-              <div class="hub-icon">🌟</div>
+              <div class="hub-icon" aria-hidden="true">🌟</div>
               <span class="hub-code">TCH</span>
             </div>
 
@@ -1324,8 +1727,7 @@
 
             <p>
               Explore career paths, educational opportunities,
-              skill development and your next steps
-              toward your ambitions.
+              skill development and your next steps toward your ambitions.
             </p>
 
             <div class="hub-tags">
@@ -1340,7 +1742,7 @@
               href="https://thoedge.github.io/TCH/"
             >
               <span>Enter Career Hub</span>
-              <span class="hub-arrow">→</span>
+              <span class="hub-arrow" aria-hidden="true">→</span>
             </a>
 
           </article>
@@ -1352,9 +1754,9 @@
     </section>
 
 
-    <!-- ==============================
+    <!-- =====================================
          LEARNING JOURNEY
-    ============================== -->
+    ====================================== -->
 
     <section class="section" id="journey">
 
@@ -1379,37 +1781,61 @@
 
           <div class="journey-grid">
 
-            <button class="journey-step" data-target="TBH" type="button">
+            <button
+              class="journey-step"
+              data-target="TBH"
+              type="button"
+            >
               <span class="journey-number">01</span>
               <strong>School</strong>
               <small>Build foundations</small>
             </button>
 
-            <button class="journey-step" data-target="TJH" type="button">
+            <button
+              class="journey-step"
+              data-target="TJH"
+              type="button"
+            >
               <span class="journey-number">02</span>
               <strong>Entrance</strong>
               <small>Prepare for JEE</small>
             </button>
 
-            <button class="journey-step" data-target="TEH" type="button">
+            <button
+              class="journey-step"
+              data-target="TEH"
+              type="button"
+            >
               <span class="journey-number">03</span>
               <strong>Engineering</strong>
               <small>Explore your field</small>
             </button>
 
-            <button class="journey-step" data-target="TSH" type="button">
+            <button
+              class="journey-step"
+              data-target="TSH"
+              type="button"
+            >
               <span class="journey-number">04</span>
               <strong>Tech Skills</strong>
               <small>Learn practical skills</small>
             </button>
 
-            <button class="journey-step" data-target="TGH" type="button">
+            <button
+              class="journey-step"
+              data-target="TGH"
+              type="button"
+            >
               <span class="journey-number">05</span>
               <strong>Higher Studies</strong>
               <small>Explore GATE</small>
             </button>
 
-            <button class="journey-step" data-target="TCH" type="button">
+            <button
+              class="journey-step"
+              data-target="TCH"
+              type="button"
+            >
               <span class="journey-number">06</span>
               <strong>Career</strong>
               <small>Plan your future</small>
@@ -1428,9 +1854,9 @@
     </section>
 
 
-    <!-- ==============================
+    <!-- =====================================
          ABOUT
-    ============================== -->
+    ====================================== -->
 
     <section class="section" id="about">
 
@@ -1438,7 +1864,18 @@
 
         <div class="about-panel reveal">
 
-          <div class="about-symbol">tE</div>
+          <!-- Actual logo, 48 x 48 -->
+
+          <div class="about-symbol">
+
+            <img
+              src="logo.png"
+              alt="thoEdge logo"
+              width="48"
+              height="48"
+            >
+
+          </div>
 
           <h2>
             What is <span class="gradient-text">thoEdge?</span>
@@ -1463,9 +1900,9 @@
   </main>
 
 
-  <!-- ==============================
+  <!-- =======================================
        FOOTER
-  ============================== -->
+  ======================================== -->
 
   <footer class="site-footer">
 
@@ -1489,44 +1926,77 @@
   </footer>
 
 
-  <!-- ==============================
+  <!-- =======================================
        JAVASCRIPT
-  ============================== -->
+  ======================================== -->
 
   <script>
     "use strict";
 
+
+    /* =======================================
+       ELEMENTS
+    ======================================== */
+
     const intro = document.getElementById("intro");
     const siteHeader = document.getElementById("siteHeader");
-    const logoOrbit = intro.querySelector(".logo-orbit");
 
+    const orbit = intro.querySelector(".flight-orbit");
+    const aircraftPath = intro.querySelector(".aircraft-path");
+    const aircraft = intro.querySelector(".aircraft");
+    const trail = intro.querySelector(".takeoff-trail");
+
+    let introTimer = null;
     let isOpeningHub = false;
-    let introTimer;
 
 
-    /* INITIAL LOGO ANIMATION */
+    /* =======================================
+       RESTART INTRO ANIMATIONS
+    ======================================== */
+
+    function restartAnimation(element) {
+      if (!element) return;
+
+      element.style.animation = "none";
+
+      // Force the browser to restart the animation.
+      void element.offsetWidth;
+
+      element.style.animation = "";
+    }
+
+
+    /* =======================================
+       SHOW INTRO
+    ======================================== */
 
     function showIntro() {
+      clearTimeout(introTimer);
+
       intro.classList.remove("hide");
 
-      if (logoOrbit) {
-        logoOrbit.style.animation = "none";
-
-        // Restart the logo entrance animation.
-        void logoOrbit.offsetWidth;
-
-        logoOrbit.style.animation = "";
-      }
+      restartAnimation(orbit);
+      restartAnimation(aircraftPath);
+      restartAnimation(aircraft);
+      restartAnimation(trail);
     }
+
+
+    /* =======================================
+       HIDE INTRO
+    ======================================== */
 
     function hideIntro() {
       intro.classList.add("hide");
     }
 
-    function startIntro() {
-      showIntro();
 
-      clearTimeout(introTimer);
+    /* =======================================
+       FIRST PAGE-LOAD ANIMATION
+    ======================================== */
+
+    function startInitialIntro() {
+      showIntro();
 
       introTimer = setTimeout(function () {
         hideIntro();
@@ -1534,20 +2004,35 @@
     }
 
     if (document.readyState === "complete") {
-      startIntro();
+      startInitialIntro();
     } else {
-      window.addEventListener("load", startIntro, { once: true });
+      window.addEventListener(
+        "load",
+        startInitialIntro,
+        { once: true }
+      );
     }
 
 
-    /* DIRECT HUB NAVIGATION */
+    /* =======================================
+       HUB NAVIGATION
+       KEEP INTRO VISIBLE UNTIL NAVIGATION
+    ======================================== */
 
     document.addEventListener("click", function (event) {
+
       const link = event.target.closest("a.hub-link");
 
       if (!link) return;
 
-      // Preserve opening links in a new tab.
+      /*
+        Preserve normal browser behavior for:
+        - Opening a link in a new tab
+        - Ctrl-click
+        - Shift-click
+        - Middle-click
+      */
+
       if (
         event.button !== 0 ||
         event.ctrlKey ||
@@ -1566,22 +2051,32 @@
 
       const destination = link.href;
 
-      clearTimeout(introTimer);
-
-      // Keep the logo and circle visible during navigation.
+      // Display the airplane intro again.
       showIntro();
 
-      // Do not hide the intro before changing websites.
-      setTimeout(function () {
+      /*
+        Do not hide the intro before navigation.
+        This prevents the landing page from flashing
+        between the animation and the destination.
+      */
+
+      introTimer = setTimeout(function () {
+
         window.location.href = destination;
-      }, 2600);
+
+      }, 3000);
+
     });
 
 
-    /* LEARNING JOURNEY BUTTONS */
+    /* =======================================
+       JOURNEY BUTTONS
+    ======================================== */
 
     document.querySelectorAll(".journey-step").forEach(function (step) {
+
       step.addEventListener("click", function () {
+
         const code = step.dataset.target;
 
         const link = document.querySelector(
@@ -1610,53 +2105,79 @@
             easing: "ease-in-out"
           }
         );
+
       });
+
     });
 
 
-    /* HEADER SCROLL EFFECT */
+    /* =======================================
+       HEADER SCROLL EFFECT
+    ======================================== */
 
     function updateHeader() {
+
       siteHeader.classList.toggle(
         "header-hidden",
         window.scrollY >= 60
       );
+
     }
 
-    window.addEventListener("scroll", updateHeader, {
-      passive: true
-    });
+    window.addEventListener(
+      "scroll",
+      updateHeader,
+      { passive: true }
+    );
 
     updateHeader();
 
 
-    /* SCROLL REVEAL */
+    /* =======================================
+       SCROLL REVEAL
+    ======================================== */
 
     const revealElements = document.querySelectorAll(".reveal");
 
     if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(function (entries, obs) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            obs.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.12
-      });
+
+      const observer = new IntersectionObserver(
+        function (entries, currentObserver) {
+
+          entries.forEach(function (entry) {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("visible");
+
+              currentObserver.unobserve(entry.target);
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.12
+        }
+      );
 
       revealElements.forEach(function (element) {
         observer.observe(element);
       });
+
     } else {
+
       revealElements.forEach(function (element) {
         element.classList.add("visible");
       });
+
     }
 
 
-    /* AUTOMATIC FOOTER YEAR */
+    /* =======================================
+       AUTOMATIC COPYRIGHT YEAR
+    ======================================== */
 
     document.getElementById("currentYear").textContent =
       new Date().getFullYear();
@@ -1664,4 +2185,5 @@
   </script>
 
 </body>
+
 </html>
