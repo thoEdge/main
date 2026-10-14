@@ -10,7 +10,8 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="thoEdge - Study Hubs">
 <meta property="og:description" content="One platform. Many hubs. From Class 10 to Engineering and beyond.">
-<meta property="og:image" content="logo.png"><!-- replace with the full https:// link of your logo -->
+<meta property="og:image" content="logo.png">
+
 <style>
 :root{--bg:#07070a;--card:#0e0e14;--text:#ececf3;--muted:#b0b0c4;--line:rgba(255,255,255,.14);--cyan:#00f0ff;--purple:#8b5cf6}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -19,7 +20,26 @@ body{font-family:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-ser
 body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:-1}
 :focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
 
-  /* HEADER */
+/* THREE-SECOND LOGO INTRO */
+#logoIntro{position:fixed;inset:0;z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:#07070a;opacity:1;visibility:visible}
+#logoIntro.hide{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .4s ease,visibility .4s ease}
+.logo-orbit{position:relative;width:156px;height:156px;display:grid;place-items:center;border-radius:50%;animation:orbitEntrance 2.6s ease-in-out both}
+.logo-orbit::before,.logo-orbit::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid transparent}
+.logo-orbit::before{border-top-color:#00f0ff;border-right-color:#00aaff;animation:spinOrbit 1.2s linear infinite}
+.logo-orbit::after{inset:9px;border-bottom-color:#8b5cf6;border-left-color:#ec4899;animation:spinOrbitReverse 1.7s linear infinite}
+.logo-circle{width:124px;height:124px;display:grid;place-items:center;overflow:hidden;border-radius:50%;border:2px solid rgba(0,240,255,.8);background:radial-gradient(circle,#15152a,#09090d);box-shadow:0 0 22px rgba(0,240,255,.25),inset 0 0 20px rgba(139,92,246,.18)}
+.logo-circle img{display:block;width:100%;height:100%;object-fit:contain;padding:8px;border-radius:50%}
+#logoIntro h2{font-size:23px;letter-spacing:4px;font-weight:800;color:#fff;text-align:center}
+#logoIntro h2 span{background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+#logoIntro p{color:var(--cyan);font-size:11px;letter-spacing:3px;text-align:center}
+.intro-loader{width:150px;height:3px;margin-top:7px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}
+.intro-loader span{display:block;width:40%;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--cyan),var(--purple));animation:loadLine 2.6s ease-in-out forwards}
+@keyframes spinOrbit{to{transform:rotate(360deg)}}
+@keyframes spinOrbitReverse{to{transform:rotate(-360deg)}}
+@keyframes orbitEntrance{0%{transform:scale(.55);opacity:0}25%{transform:scale(1.05);opacity:1}75%{transform:scale(1);opacity:1}100%{transform:scale(.96);opacity:1}}
+@keyframes loadLine{from{width:0}to{width:100%}}
+
+/* HEADER */
 header{position:sticky;top:0;z-index:100;background:rgba(7,7,10,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line);transition:transform .3s}
 header.hidden{transform:translateY(-110%)}
 .nav{max-width:1200px;margin:auto;padding:12px 20px;min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative}
@@ -68,7 +88,6 @@ header.hidden{transform:translateY(-110%)}
 .hub:hover{transform:translateY(-5px);border-color:var(--k);box-shadow:0 14px 40px rgba(0,0,0,.4),0 0 28px color-mix(in srgb,var(--k),transparent 80%)}
 .hub.flash{animation:flash 1.2s ease}
 @keyframes flash{0%,60%{box-shadow:0 0 40px var(--k),0 0 90px color-mix(in srgb,var(--k),transparent 50%)}}
-.hub-top{display:flex;justify-content:space-between;align-items:center}
 .icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:23px;background:color-mix(in srgb,var(--k),transparent 85%)}
 .status{font-size:10px;font-weight:bold;letter-spacing:.8px;padding:5px 9px;border-radius:100px}
 .status.live{background:rgba(0,255,157,.12);color:#00ff9d}
@@ -100,10 +119,24 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 .grid{grid-template-columns:1fr}
 .btn,.cta{padding:14px 20px}
 }
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){.logo-orbit,.logo-orbit::before,.logo-orbit::after,.intro-loader span{animation-duration:3s!important}}
+
+/* Keep the intro overlay's fade consistent on every device. */
 </style>
 </head>
 <body>
+
+<!-- LOGO INTRO: shown on page load and before opening a hub -->
+<div id="logoIntro" aria-label="thoEdge loading screen">
+  <div class="logo-orbit">
+    <div class="logo-circle">
+      <img src="logo.png" alt="thoEdge logo" onerror="this.style.display='none'">
+    </div>
+  </div>
+  <h2>tho<span>Edge</span></h2>
+  <p>ONE PLATFORM. MANY HUBS.</p>
+  <div class="intro-loader" aria-hidden="true"><span></span></div>
+</div>
 
 <header id="hd">
   <div class="nav">
@@ -129,7 +162,6 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 </section>
 
 <div class="wrap">
-
   <section class="sec" id="journey">
     <h2 class="sec-title">Student Journey</h2>
     <p class="sec-desc">Pick your stage. Each step leads to its own hub.</p>
@@ -151,7 +183,6 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
       <div><h4>Built to grow</h4><p>New hubs are added over time. The next ones are already planned.</p></div>
     </div>
   </section>
-
 </div>
 
 <footer>
@@ -163,35 +194,18 @@ footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:u
 </footer>
 
 <script>
-/* ============================================================
-   EDIT HERE: put the real link of each hub in "link".
-   status: "live" shows an Open button, "soon" shows Coming soon.
-   color: each hub keeps its own accent color.
-   ============================================================ */
+/* HUB LINKS: update each URL here if your hub address changes. */
 const hubs=[
- {id:"tbh",icon:"📖",name:"Boards Hub",code:"TBH",color:"#f59e0b",status:"live",
-  link:"https://thoedge.github.io/TBH/",stage:"Class 10 & 12",
-  desc:"Board exam preparation: notes, chapter-wise resources, previous papers and revision material.",tags:["Class 10","Class 12","PYQs","Notes"]},
- {id:"tjh",icon:"🎯",name:"JEE Hub",code:"TJH",color:"#00aaff",status:"live",
-  link:"https://thoedge.github.io/TJH/",stage:"Class 11-12",
-  desc:"JEE Main & Advanced and other entrance exams: books, notes, formulas, shortcuts, PYQs, DPPs and mock tests.",tags:["JEE Main","JEE Advanced","BITSAT","NEET"]},
- {id:"eng",icon:"🛠️",name:"Engineering Hub",code:"TEH",color:"#10b981",status:"live",
-  link:"https://thoedge.github.io/TEH/",stage:"Engineering",
-  desc:"Year-wise and branch-wise notes, university question papers, lab manuals and projects.",tags:["Year 1-4","Branches","Notes","Labs"]},
- {id:"skills",icon:"💻",name:"Tech Skills Hub",code:"TSH",color:"#ec4899",status:"live",
-  link:"https://thoedge.github.io/TSH/",stage:"Skills",
-  desc:"Roadmaps and free resources for coding, web development, AI and data structures.",tags:["Coding","Web","AI","DSA"]},
- {id:"gate",icon:"🧭",name:"GATE Hub",code:"TGH",color:"#6366f1",status:"live",
-  link:"https://thoedge.github.io/TGH/",stage:"After engineering",
-  desc:"GATE preparation by branch with syllabus, PYQs, notes and test practice.",tags:["GATE","PYQs","Mock tests"]},
- {id:"career",icon:"🚀",name:"Career Hub",code:"TCH",color:"#eab308",status:"live",
-  link:"https://thoedge.github.io/TCH/",stage:"Careers",
-  desc:"Resume help, internships, placement preparation and interview questions.",tags:["Resume","Internships","Placements"]}
+ {id:"tbh",icon:"📖",name:"Boards Hub",code:"TBH",color:"#f59e0b",status:"live",link:"https://thoedge.github.io/TBH/",stage:"Class 10 & 12",desc:"Board exam preparation: notes, chapter-wise resources, previous papers and revision material.",tags:["Class 10","Class 12","PYQs","Notes"]},
+ {id:"tjh",icon:"🎯",name:"JEE Hub",code:"TJH",color:"#00aaff",status:"live",link:"https://thoedge.github.io/TJH/",stage:"Class 11-12",desc:"JEE Main & Advanced and other entrance exams: books, notes, formulas, shortcuts, PYQs, DPPs and mock tests.",tags:["JEE Main","JEE Advanced","BITSAT","NEET"]},
+ {id:"eng",icon:"🛠️",name:"Engineering Hub",code:"TEH",color:"#10b981",status:"live",link:"https://thoedge.github.io/TEH/",stage:"Engineering",desc:"Year-wise and branch-wise notes, university question papers, lab manuals and projects.",tags:["Year 1-4","Branches","Notes","Labs"]},
+ {id:"skills",icon:"💻",name:"Tech Skills Hub",code:"TSH",color:"#ec4899",status:"live",link:"https://thoedge.github.io/TSH/",stage:"Skills",desc:"Roadmaps and free resources for coding, web development, AI and data structures.",tags:["Coding","Web","AI","DSA"]},
+ {id:"gate",icon:"🧭",name:"GATE Hub",code:"TGH",color:"#6366f1",status:"live",link:"https://thoedge.github.io/TGH/",stage:"After engineering",desc:"GATE preparation by branch with syllabus, PYQs, notes and test practice.",tags:["GATE","PYQs","Mock tests"]},
+ {id:"career",icon:"🚀",name:"Career Hub",code:"TCH",color:"#eab308",status:"live",link:"https://thoedge.github.io/TCH/",stage:"Careers",desc:"Resume help, internships, placement preparation and interview questions.",tags:["Resume","Internships","Placements"]}
 ];
 
-/* Journey strip: label, short text, hub it leads to */
 const journey=[
- {s:"STEP 1",t:"Class (X & XII) ",d:"CBSE Board Exams",hub:"tbh"},
+ {s:"STEP 1",t:"Class (X & XII)",d:"CBSE Board Exams",hub:"tbh"},
  {s:"STEP 2",t:"Class XI & XII (PCM)",d:"All Competitive Exams",hub:"tjh"},
  {s:"STEP 3",t:"Engineering",d:"Branch & semester",hub:"eng"},
  {s:"STEP 4",t:"Skills",d:"Tech & coding",hub:"skills"},
@@ -203,54 +217,90 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"
 const byId=id=>hubs.find(h=>h.id===id);
 
 $("hub-grid").innerHTML=hubs.map(h=>{
- 
-const ready =
-  h.status === "live" &&
-  h.link &&
-  !h.link.startsWith("YOUR_");
+  const ready=h.status==="live" && h.link && !h.link.startsWith("YOUR_");
+  const btn=ready
+    ? `<a class="btn hub-link" href="${esc(h.link)}">Open ${esc(h.code)} →</a>`
+    : `<span class="btn off">${h.status==="live"?"Check link":"Coming soon"}</span>`;
 
-const btn = ready
-  ? `<a class="btn" href="${esc(h.link)}"
-       target="_blank" rel="noopener noreferrer">
-       Open ${esc(h.code)} →
-     </a>`
-  : `<span class="btn off">${
-       h.status === "live" ? "Check link" : "Coming soon"
-     }</span>`;
-  
- return `<article class="hub" id="hub-${h.id}" style="--k:${h.color}">
-  <div class="hub-top"><div class="icon">${h.icon}</div><span class="status ${h.status}">${h.status==="live"?"LIVE":"COMING SOON"}</span></div>
-  <h3>${esc(h.name)}</h3><div class="code">${esc(h.code)} • ${esc(h.stage)}</div>
-  <p>${esc(h.desc)}</p>
-  <div class="tags">${h.tags.map(t=>`<span>${esc(t)}</span>`).join("")}</div>${btn}</article>`;
+  return `<article class="hub" id="hub-${h.id}" style="--k:${h.color}">
+    <div class="hub-top"><div class="icon">${h.icon}</div><span class="status ${h.status}">${h.status==="live"?"LIVE":"COMING SOON"}</span></div>
+    <h3>${esc(h.name)}</h3><div class="code">${esc(h.code)} • ${esc(h.stage)}</div>
+    <p>${esc(h.desc)}</p>
+    <div class="tags">${h.tags.map(t=>`<span>${esc(t)}</span>`).join("")}</div>${btn}
+  </article>`;
 }).join("");
 
 $("journey-list").innerHTML=journey.map(j=>{
- const h=byId(j.hub);
- return `<div class="step" tabindex="0" data-h="${j.hub}" style="--k:${h.color}"><small>${j.s}</small><h4>${esc(j.t)}</h4><p>${esc(j.d)}</p></div>`;
+  const h=byId(j.hub);
+  return `<div class="step" tabindex="0" data-h="${j.hub}" style="--k:${h.color}"><small>${j.s}</small><h4>${esc(j.t)}</h4><p>${esc(j.d)}</p></div>`;
 }).join("");
 
 document.querySelectorAll(".step").forEach(el=>{
- const go=()=>{
-  const card=$("hub-"+el.dataset.h);
-  card.scrollIntoView({behavior:"smooth",block:"center"});
-  card.classList.remove("flash");void card.offsetWidth;card.classList.add("flash");
- };
- el.onclick=go;el.onkeydown=e=>{if(e.key==="Enter")go()};
+  const go=()=>{
+    const card=$("hub-"+el.dataset.h);
+    if(!card)return;
+    card.scrollIntoView({behavior:"smooth",block:"center"});
+    card.classList.remove("flash");void card.offsetWidth;card.classList.add("flash");
+  };
+  el.onclick=go;
+  el.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}};
 });
 
-/* mobile menu */
+/* MOBILE MENU */
 const mb=$("mb"),mn=$("mn");
 const closeMenu=()=>{mn.classList.remove("open");mb.setAttribute("aria-expanded","false")};
 mb.onclick=e=>{e.stopPropagation();mb.setAttribute("aria-expanded",mn.classList.toggle("open"))};
-mn.onclick=closeMenu;
+mn.onclick=e=>{if(e.target.closest("a"))closeMenu()};
 document.addEventListener("click",e=>{if(!mn.contains(e.target)&&e.target!==mb)closeMenu()});
 
-/* header hides when scrolled down, shows only at the top */
+/* HEADER hides when scrolled down, shows at the top */
 addEventListener("scroll",()=>{
- $("hd").classList.toggle("hidden",scrollY>=60);
- if(scrollY>=60)closeMenu();
+  $("hd").classList.toggle("hidden",scrollY>=60);
+  if(scrollY>=60)closeMenu();
 },{passive:true});
+
+/* LOGO INTRO: about 3 seconds total, including fade-out */
+const intro=$("logoIntro");
+let introPromise=null;
+
+function playLogoIntro(){
+  if(introPromise)return introPromise;
+
+  intro.classList.remove("hide");
+  intro.style.display="flex";
+
+  introPromise=new Promise(resolve=>{
+    setTimeout(()=>{
+      intro.classList.add("hide");
+      setTimeout(()=>{
+        intro.style.display="none";
+        introPromise=null;
+        resolve();
+      },400);
+    },2600);
+  });
+
+  return introPromise;
+}
+
+/* Show logo animation whenever the main page loads */
+window.addEventListener("load",()=>{
+  playLogoIntro();
+});
+
+/* Play the logo animation before navigating to a hub */
+document.addEventListener("click",async event=>{
+  const link=event.target.closest("a.hub-link");
+  if(!link)return;
+
+  event.preventDefault();
+  if(link.dataset.opening==="true")return;
+  link.dataset.opening="true";
+
+  const destination=link.href;
+  await playLogoIntro();
+  window.location.href=destination;
+});
 </script>
 </body>
 </html>
