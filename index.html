@@ -1,9 +1,7 @@
 <!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>thoEdge - Study Hubs from Class 10 to Engineering</title>
-<meta name="description" content="thoEdge is a platform of focused study hubs: Boards, JEE, Engineering, Tech Skills, GATE and Careers.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>thoEdge - Study Hubs from Class 10 to Engineering</title><meta name="description" content="thoEdge is a platform of focused study hubs: Boards, JEE, Engineering, Tech Skills, GATE and Careers.">
 <meta name="theme-color" content="#07070a"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307070a'/%3E%3Ctext x='32' y='43' font-size='30' font-weight='bold' text-anchor='middle' fill='%2300f0ff' font-family='Arial'%3Et%3C/text%3E%3C/svg%3E"><meta property="og:type" content="website">
 <meta property="og:title" content="thoEdge - Study Hubs">
 <meta property="og:description" content="One platform. Many hubs. From Class 10 to Engineering and beyond.">
@@ -53,7 +51,7 @@ body::before{
   outline-offset:2px;
 }
 
-/* THREE-SECOND LOGO INTRO */
+/* LOGO INTRO */
 
 #logoIntro{
   position:fixed;
@@ -130,28 +128,6 @@ body::before{
   border-radius:50%;
 }
 
-#logoIntro h2{
-  font-size:23px;
-  letter-spacing:4px;
-  font-weight:800;
-  color:#fff;
-  text-align:center;
-}
-
-#logoIntro h2 span{
-  background:linear-gradient(90deg,var(--cyan),var(--purple));
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-}
-
-#logoIntro p{
-  color:var(--cyan);
-  font-size:11px;
-  letter-spacing:3px;
-  text-align:center;
-}
-
 #logoIntro h2,
 #logoIntro p,
 .intro-loader{
@@ -196,7 +172,7 @@ body::before{
   to{width:100%}
 }
 
-/* HEADER */
+/* HEADER: TEXT ONLY */
 
 header{
   position:sticky;
@@ -216,23 +192,20 @@ header.hidden{
 .nav-container{
   max-width:1200px;
   margin:auto;
-  padding:10px 20px;
+  padding:14px 20px;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:20px;
+  justify-content:flex-start;
 }
 
 .brand{
   display:flex;
   align-items:center;
-  gap:10px;
-  cursor:pointer;
   text-decoration:none;
 }
 
 .wordmark{
-  font-size:22px;
+  font-size:24px;
   font-weight:800;
   letter-spacing:-.5px;
   color:#fff;
@@ -243,68 +216,6 @@ header.hidden{
   -webkit-background-clip:text;
   background-clip:text;
   color:transparent;
-}
-
-.links{
-  display:flex;
-  gap:6px;
-}
-
-.links a{
-  padding:9px 14px;
-  border-radius:10px;
-  font-size:13px;
-  text-decoration:none;
-  color:var(--muted);
-  transition:.2s;
-}
-
-.links a:hover{
-  color:#fff;
-  background:rgba(255,255,255,.07);
-}
-
-.menu-btn{
-  display:none;
-  width:44px;
-  height:44px;
-  border-radius:12px;
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.05);
-  color:#fff;
-  font-size:20px;
-  cursor:pointer;
-}
-
-.menu{
-  display:none;
-  position:absolute;
-  top:100%;
-  right:14px;
-  min-width:200px;
-  padding:8px;
-  border-radius:14px;
-  border:1px solid var(--line);
-  background:rgba(10,10,16,.97);
-  box-shadow:0 14px 40px rgba(0,0,0,.5);
-}
-
-.menu.open{
-  display:block;
-}
-
-.menu a{
-  display:block;
-  padding:13px 14px;
-  border-radius:10px;
-  text-decoration:none;
-  font-size:14px;
-  color:var(--muted);
-}
-
-.menu a:hover{
-  background:rgba(255,255,255,.07);
-  color:#fff;
 }
 
 /* HERO */
@@ -378,7 +289,7 @@ header.hidden{
 
 .sec{
   margin:70px 0;
-  scroll-margin-top:100px;
+  scroll-margin-top:90px;
 }
 
 .sec-title{
@@ -404,7 +315,7 @@ header.hidden{
   margin-bottom:24px;
 }
 
-/* JOURNEY STRIP */
+/* STUDENT JOURNEY */
 
 .journey{
   display:flex;
@@ -492,7 +403,7 @@ header.hidden{
   -webkit-backdrop-filter:blur(12px);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 8px 24px rgba(0,0,0,.25);
   transition:.3s;
-  scroll-margin-top:100px;
+  scroll-margin-top:90px;
 }
 
 .hub:hover{
@@ -669,16 +580,9 @@ footer a:hover{
   text-decoration:underline;
 }
 
-/* MOBILE */
+/* MOBILE RESPONSIVENESS */
 
 @media(max-width:700px){
-  .links{
-    display:none;
-  }
-
-  .menu-btn{
-    display:block;
-  }
 
   .hero{
     padding-top:60px;
@@ -706,85 +610,81 @@ footer a:hover{
   }
 }
 
+/* REDUCED MOTION */
+
 @media(prefers-reduced-motion:reduce){
+
   .logo-orbit,
   .logo-orbit::before,
   .logo-orbit::after,
   .intro-loader span{
     animation-duration:3s!important;
   }
-}
 
-/* Keep the intro overlay's fade consistent on every device. */
-</style></head><body><!-- LOGO INTRO --><div id="logoIntro" aria-label="thoEdge loading screen">
+  html{
+    scroll-behavior:auto;
+  }
+}
+</style></head><body><!-- OPENING LOGO ANIMATION: LOGO ONLY APPEARS HERE --><div id="logoIntro" aria-label="thoEdge loading screen">
   <div class="logo-orbit">
     <div class="logo-circle">
-      <img src="logo.png" alt="thoEdge logo" onerror="this.style.display='none'">
+      <img
+        src="logo.png"
+        alt="thoEdge logo"
+        onerror="this.style.display='none'">
     </div>
   </div>
-</div><!-- HEADER --><header id="hd">
-  <div class="nav-container"><a class="brand" href="#home" aria-label="thoEdge Home">
-  <img src="logo.png" alt="thoEdge logo" onerror="this.style.display='none'">
-  <span class="wordmark">tho<b>Edge</b></span>
-</a>
-
-<nav class="links" aria-label="Main navigation">
-  <a href="#home">Home</a>
-  <a href="#journey">Journey</a>
-  <a href="#hubs">All Hubs</a>
-  <a href="#about">About</a>
-</nav>
-
-<button
-  class="menu-btn"
-  id="mb"
-  type="button"
-  aria-label="Open navigation menu"
-  aria-expanded="false"
-  aria-controls="mn">
-  ☰
-</button>
-
-<nav class="menu" id="mn" aria-label="Mobile navigation">
-  <a href="#home">Home</a>
-  <a href="#journey">Journey</a>
-  <a href="#hubs">All Hubs</a>
-  <a href="#about">About</a>
-</nav>
-
+</div><!-- HEADER: ONLY TEXT, NO LOGO OR NAVIGATION BUTTONS --><header id="hd">
+  <div class="nav-container">
+    <a class="brand" href="#home" aria-label="thoEdge Home">
+      <span class="wordmark">tho<b>Edge</b></span>
+    </a>
   </div>
-</header><!-- HERO --><section class="hero" id="home">
-  <span class="pill">STUDY HUBS • CLASS 10 TO ENGINEERING AND BEYOND</span>  <h1>One platform. <span>Many hubs.</span></h1>  <p>
+</header><!-- HERO SECTION --><section class="hero" id="home">  <span class="pill">
+    STUDY HUBS • CLASS 10 TO ENGINEERING AND BEYOND
+  </span>  <h1>One platform. <span>Many hubs.</span></h1>  <p>
     thoEdge brings focused study hubs together, so every student finds
     the right resources for the right stage, from boards to entrance
     exams to engineering and careers.
   </p><a class="cta" href="#hubs">Explore hubs</a>
 
-</section><div class="wrap">  <!-- STUDENT JOURNEY -->  <section class="sec" id="journey">
-    <h2 class="sec-title">Student Journey</h2>
-    <p class="sec-desc">Pick your stage. Each step leads to its own hub.</p>
-    <div class="journey" id="journey-list"></div>
-  </section>  <!-- ALL HUBS -->  <section class="sec" id="hubs">
-    <h2 class="sec-title">All Hubs</h2>
-    <p class="sec-desc">Every hub has its own theme and focus.</p>
-    <div class="grid" id="hub-grid"></div>
-  </section>  <!-- ABOUT -->  <section class="sec" id="about">
-    <h2 class="sec-title">Why thoEdge</h2>
-    <p class="sec-desc">Simple, organized and free to use.</p><div class="about">
+</section><div class="wrap">  <!-- STUDENT JOURNEY -->  <section class="sec" id="journey"><h2 class="sec-title">Student Journey</h2>
+
+<p class="sec-desc">
+  Pick your stage. Each step leads to its own hub.
+</p>
+
+<div class="journey" id="journey-list"></div>
+
+  </section>  <!-- ALL HUBS -->  <section class="sec" id="hubs"><h2 class="sec-title">All Hubs</h2>
+
+<p class="sec-desc">
+  Every hub has its own theme and focus.
+</p>
+
+<div class="grid" id="hub-grid"></div>
+
+  </section>  <!-- ABOUT -->  <section class="sec" id="about"><h2 class="sec-title">Why thoEdge</h2>
+
+<p class="sec-desc">
+  Simple, organized and free to use.
+</p>
+
+<div class="about">
 
   <div>
     <h4>Focused hubs</h4>
     <p>
-      Each hub does one job well, instead of one crowded site doing
-      everything.
+      Each hub does one job well, instead of one crowded site
+      doing everything.
     </p>
   </div>
 
   <div>
     <h4>Organized by stage</h4>
     <p>
-      From Class 10 boards to engineering, resources follow the way
-      students actually study.
+      From Class 10 boards to engineering, resources follow
+      the way students actually study.
     </p>
   </div>
 
@@ -797,17 +697,18 @@ footer a:hover{
 
 </div>
 
-  </section></div><!-- FOOTER --><footer>
-  <div class="wordmark" style="font-size:18px">tho<b>Edge</b></div>  <div class="fline"></div>  <p>Copyright © 2026 • thoEdge Creations!</p>
-  <p>Founded by Matta Thoyajaksh</p>  <p style="margin-top:12px">
+  </section></div><!-- FOOTER --><footer>  <div class="wordmark" style="font-size:18px">
+    tho<b>Edge</b>
+  </div>  <div class="fline"></div>  <p>Copyright © 2026 • thoEdge Creations!</p>  <p>Founded by Matta Thoyajaksh</p>  <p style="margin-top:12px">
     <a href="#home">Back to top</a>
     &nbsp;•&nbsp;
     <a href="mailto:YOUR_EMAIL@example.com">Contact</a>
-  </p>
-</footer><script>
-/* HUB LINKS: Update each URL here if your hub address changes. */
+  </p></footer><script>
+
+/* HUB LINKS */
 
 const hubs = [
+
   {
     id:"tbh",
     icon:"📖",
@@ -820,6 +721,7 @@ const hubs = [
     desc:"Board exam preparation: notes, chapter-wise resources, previous papers and revision material.",
     tags:["Class 10","Class 12","PYQs","Notes"]
   },
+
   {
     id:"tjh",
     icon:"🎯",
@@ -832,6 +734,7 @@ const hubs = [
     desc:"JEE Main & Advanced and other entrance exams: books, notes, formulas, shortcuts, PYQs, DPPs and mock tests.",
     tags:["JEE Main","JEE Advanced","BITSAT","NEET"]
   },
+
   {
     id:"eng",
     icon:"🛠️",
@@ -844,6 +747,7 @@ const hubs = [
     desc:"Year-wise and branch-wise notes, university question papers, lab manuals and projects.",
     tags:["Year 1-4","Branches","Notes","Labs"]
   },
+
   {
     id:"skills",
     icon:"💻",
@@ -856,6 +760,7 @@ const hubs = [
     desc:"Roadmaps and free resources for coding, web development, AI and data structures.",
     tags:["Coding","Web","AI","DSA"]
   },
+
   {
     id:"gate",
     icon:"🧭",
@@ -868,6 +773,7 @@ const hubs = [
     desc:"GATE preparation by branch with syllabus, PYQs, notes and test practice.",
     tags:["GATE","PYQs","Mock tests"]
   },
+
   {
     id:"career",
     icon:"🚀",
@@ -880,40 +786,51 @@ const hubs = [
     desc:"Resume help, internships, placement preparation and interview questions.",
     tags:["Resume","Internships","Placements"]
   }
+
 ];
 
+/* STUDENT JOURNEY DATA */
+
 const journey = [
+
   {
     s:"STEP 1",
     t:"Class (X & XII)",
     d:"CBSE Board Exams",
     hub:"tbh"
   },
+
   {
     s:"STEP 2",
     t:"Class XI & XII (PCM)",
     d:"All Competitive Exams",
     hub:"tjh"
   },
+
   {
     s:"STEP 3",
     t:"Engineering",
     d:"Branch & semester",
     hub:"eng"
   },
+
   {
     s:"STEP 4",
     t:"Skills",
     d:"Tech & coding",
     hub:"skills"
   },
+
   {
     s:"STEP 5",
     t:"Beyond",
     d:"GATE & careers",
     hub:"gate"
   }
+
 ];
+
+/* HELPER FUNCTIONS */
 
 const $ = id => document.getElementById(id);
 
@@ -928,7 +845,7 @@ const esc = s =>
 
 const byId = id => hubs.find(h => h.id === id);
 
-/* RENDER HUB CARDS */
+/* GENERATE HUB CARDS */
 
 $("hub-grid").innerHTML = hubs.map(h => {
 
@@ -945,11 +862,13 @@ $("hub-grid").innerHTML = hubs.map(h => {
     <article class="hub" id="hub-${h.id}" style="--k:${h.color}">
 
       <div class="hub-top">
+
         <div class="icon">${h.icon}</div>
 
         <span class="status ${h.status}">
           ${h.status === "live" ? "LIVE" : "COMING SOON"}
         </span>
+
       </div>
 
       <h3>${esc(h.name)}</h3>
@@ -968,9 +887,10 @@ $("hub-grid").innerHTML = hubs.map(h => {
 
     </article>
   `;
+
 }).join("");
 
-/* RENDER STUDENT JOURNEY */
+/* GENERATE STUDENT JOURNEY */
 
 $("journey-list").innerHTML = journey.map(j => {
 
@@ -986,14 +906,17 @@ $("journey-list").innerHTML = journey.map(j => {
       style="--k:${h.color}">
 
       <small>${esc(j.s)}</small>
+
       <h4>${esc(j.t)}</h4>
+
       <p>${esc(j.d)}</p>
 
     </div>
   `;
+
 }).join("");
 
-/* JOURNEY CLICK AND KEYBOARD INTERACTIONS */
+/* JOURNEY INTERACTIONS */
 
 document.querySelectorAll(".step").forEach(el => {
 
@@ -1013,6 +936,7 @@ document.querySelectorAll(".step").forEach(el => {
     void card.offsetWidth;
 
     card.classList.add("flash");
+
   };
 
   el.onclick = go;
@@ -1020,63 +944,26 @@ document.querySelectorAll(".step").forEach(el => {
   el.onkeydown = e => {
 
     if (e.key === "Enter" || e.key === " ") {
+
       e.preventDefault();
+
       go();
+
     }
 
   };
 
 });
 
-/* MOBILE MENU */
-
-const mb = $("mb");
-const mn = $("mn");
-
-const closeMenu = () => {
-  mn.classList.remove("open");
-  mb.setAttribute("aria-expanded","false");
-};
-
-mb.onclick = e => {
-
-  e.stopPropagation();
-
-  const isOpen = mn.classList.toggle("open");
-
-  mb.setAttribute("aria-expanded",String(isOpen));
-
-};
-
-mn.onclick = e => {
-
-  if (e.target.closest("a")) {
-    closeMenu();
-  }
-
-};
-
-document.addEventListener("click", e => {
-
-  if (!mn.contains(e.target) && e.target !== mb) {
-    closeMenu();
-  }
-
-});
-
-/* HEADER HIDES WHEN SCROLLING DOWN */
+/* HEADER SCROLL BEHAVIOR */
 
 addEventListener("scroll", () => {
 
   $("hd").classList.toggle("hidden", scrollY >= 60);
 
-  if (scrollY >= 60) {
-    closeMenu();
-  }
-
 }, {passive:true});
 
-/* LOGO INTRO: ABOUT 3 SECONDS TOTAL, INCLUDING FADE-OUT */
+/* LOGO INTRO ANIMATION */
 
 const intro = $("logoIntro");
 
@@ -1089,6 +976,7 @@ function playLogoIntro() {
   }
 
   intro.classList.remove("hide");
+
   intro.style.display = "flex";
 
   introPromise = new Promise(resolve => {
@@ -1112,15 +1000,18 @@ function playLogoIntro() {
   });
 
   return introPromise;
+
 }
 
-/* SHOW LOGO ANIMATION WHEN THE MAIN PAGE LOADS */
+/* SHOW INTRO WHEN THE PAGE LOADS */
 
 window.addEventListener("load", () => {
+
   playLogoIntro();
+
 });
 
-/* PLAY LOGO ANIMATION BEFORE OPENING A HUB */
+/* SHOW INTRO BEFORE OPENING A HUB */
 
 document.addEventListener("click", async event => {
 
@@ -1141,5 +1032,6 @@ document.addEventListener("click", async event => {
   window.location.href = destination;
 
 });
+
 </script></body>
 </html>
