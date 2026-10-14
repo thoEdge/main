@@ -1,1037 +1,1667 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>thoEdge - Study Hubs from Class 10 to Engineering</title><meta name="description" content="thoEdge is a platform of focused study hubs: Boards, JEE, Engineering, Tech Skills, GATE and Careers.">
-<meta name="theme-color" content="#07070a"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307070a'/%3E%3Ctext x='32' y='43' font-size='30' font-weight='bold' text-anchor='middle' fill='%2300f0ff' font-family='Arial'%3Et%3C/text%3E%3C/svg%3E"><meta property="og:type" content="website">
-<meta property="og:title" content="thoEdge - Study Hubs">
-<meta property="og:description" content="One platform. Many hubs. From Class 10 to Engineering and beyond.">
-<meta property="og:image" content="logo.png"><style>
-:root{
-  --bg:#07070a;
-  --card:#0e0e14;
-  --text:#ececf3;
-  --muted:#b0b0c4;
-  --line:rgba(255,255,255,.14);
-  --cyan:#00f0ff;
-  --purple:#8b5cf6;
-}
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  background:radial-gradient(circle at 50% -10%,rgba(255,255,255,.07),transparent 45%),var(--bg);
-  color:var(--text);
-  min-height:100vh;
-  overflow-x:hidden;
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
-  background-size:44px 44px;
-  pointer-events:none;
-  z-index:-1;
-}
-
-:focus-visible{
-  outline:2px solid var(--cyan);
-  outline-offset:2px;
-}
-
-/* LOGO INTRO */
-
-#logoIntro{
-  position:fixed;
-  inset:0;
-  z-index:999999;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:16px;
-  background:#07070a;
-  opacity:1;
-  visibility:visible;
-}
-
-#logoIntro.hide{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-  transition:opacity .4s ease,visibility .4s ease;
-}
-
-.logo-orbit{
-  position:relative;
-  width:min(78vw,310px);
-  height:min(78vw,310px);
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  animation:orbitEntrance 2.6s ease-in-out both;
-  flex-shrink:0;
-}
-
-.logo-orbit::before,
-.logo-orbit::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:50%;
-  border:2px solid transparent;
-}
-
-.logo-orbit::before{
-  border-top-color:#00f0ff;
-  border-right-color:#00aaff;
-  animation:spinOrbit 1.2s linear infinite;
-}
-
-.logo-orbit::after{
-  inset:8px;
-  border-bottom-color:#8b5cf6;
-  border-left-color:#ec4899;
-  animation:spinOrbitReverse 1.7s linear infinite;
-}
-
-.logo-circle{
-  width:calc(100% - 32px);
-  height:calc(100% - 32px);
-  display:grid;
-  place-items:center;
-  overflow:hidden;
-  border-radius:50%;
-  border:2px solid rgba(0,240,255,.9);
-  background:#fff;
-  box-shadow:0 0 30px rgba(0,240,255,.3);
-}
-
-.logo-circle img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  padding:0;
-  border-radius:50%;
-}
-
-#logoIntro h2,
-#logoIntro p,
-.intro-loader{
-  display:none!important;
-}
-
-.intro-loader{
-  width:150px;
-  height:3px;
-  margin-top:7px;
-  border-radius:99px;
-  background:rgba(255,255,255,.1);
-  overflow:hidden;
-}
-
-.intro-loader span{
-  display:block;
-  width:40%;
-  height:100%;
-  border-radius:99px;
-  background:linear-gradient(90deg,var(--cyan),var(--purple));
-  animation:loadLine 2.6s ease-in-out forwards;
-}
-
-@keyframes spinOrbit{
-  to{transform:rotate(360deg)}
-}
-
-@keyframes spinOrbitReverse{
-  to{transform:rotate(-360deg)}
-}
-
-@keyframes orbitEntrance{
-  0%{transform:scale(.55);opacity:0}
-  25%{transform:scale(1.05);opacity:1}
-  75%{transform:scale(1);opacity:1}
-  100%{transform:scale(.96);opacity:1}
-}
-
-@keyframes loadLine{
-  from{width:0}
-  to{width:100%}
-}
-
-/* HEADER: TEXT ONLY */
-
-header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:rgba(7,7,10,.88);
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--line);
-  transition:transform .3s;
-}
-
-header.hidden{
-  transform:translateY(-110%);
-}
-
-.nav-container{
-  max-width:1200px;
-  margin:auto;
-  padding:14px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:flex-start;
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  text-decoration:none;
-}
-
-.wordmark{
-  font-size:24px;
-  font-weight:800;
-  letter-spacing:-.5px;
-  color:#fff;
-}
-
-.wordmark b{
-  background:linear-gradient(90deg,var(--cyan),var(--purple));
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-}
-
-/* HERO */
-
-.hero{
-  max-width:900px;
-  margin:auto;
-  padding:90px 20px 40px;
-  text-align:center;
-}
-
-.pill{
-  display:inline-block;
-  padding:7px 14px;
-  border:1px solid var(--line);
-  border-radius:100px;
-  font-size:12px;
-  color:var(--muted);
-  letter-spacing:.5px;
-}
-
-.hero h1{
-  margin-top:22px;
-  font-size:clamp(34px,6.5vw,66px);
-  line-height:1.05;
-  font-weight:800;
-  letter-spacing:-1.5px;
-  color:#fff;
-}
-
-.hero h1 span{
-  background:linear-gradient(90deg,var(--cyan),var(--purple));
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-}
-
-.hero p{
-  max-width:620px;
-  margin:20px auto 0;
-  color:var(--muted);
-  font-size:16px;
-  line-height:1.7;
-}
-
-.cta{
-  display:inline-block;
-  margin-top:28px;
-  padding:14px 26px;
-  border-radius:12px;
-  background:#fff;
-  color:#07070a;
-  font-weight:bold;
-  font-size:14px;
-  text-decoration:none;
-  transition:.2s;
-}
-
-.cta:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 30px rgba(255,255,255,.18);
-}
-
-/* SECTIONS */
-
-.wrap{
-  max-width:1200px;
-  margin:auto;
-  padding:0 20px;
-}
-
-.sec{
-  margin:70px 0;
-  scroll-margin-top:90px;
-}
-
-.sec-title{
-  font-size:26px;
-  font-weight:800;
-  color:#fff;
-}
-
-.sec-title::after{
-  content:"";
-  display:block;
-  width:50px;
-  height:3px;
-  margin-top:9px;
-  border-radius:3px;
-  background:linear-gradient(90deg,var(--cyan),var(--purple));
-}
-
-.sec-desc{
-  color:var(--muted);
-  font-size:14px;
-  margin-top:10px;
-  margin-bottom:24px;
-}
-
-/* STUDENT JOURNEY */
-
-.journey{
-  display:flex;
-  gap:0;
-  overflow-x:auto;
-  padding-bottom:10px;
-  scrollbar-width:thin;
-}
-
-.step{
-  flex:1 0 170px;
-  position:relative;
-  padding:16px 14px 16px 16px;
-  margin-right:12px;
-  border:1px solid var(--line);
-  border-top:3px solid var(--k);
-  border-radius:14px;
-  background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.015));
-  cursor:pointer;
-  transition:.25s;
-}
-
-.step:hover{
-  transform:translateY(-3px);
-  border-color:var(--k);
-  box-shadow:0 8px 26px color-mix(in srgb,var(--k),transparent 80%);
-}
-
-.step small{
-  display:block;
-  color:var(--k);
-  font-size:11px;
-  font-weight:bold;
-  letter-spacing:1px;
-}
-
-.step h4{
-  margin-top:6px;
-  font-size:15px;
-  color:#fff;
-}
-
-.step p{
-  margin-top:4px;
-  font-size:12px;
-  color:var(--muted);
-}
-
-.step::after{
-  content:"›";
-  position:absolute;
-  right:-13px;
-  top:50%;
-  transform:translateY(-50%);
-  color:var(--muted);
-  font-size:20px;
-}
-
-.step:last-child{
-  margin-right:0;
-}
-
-.step:last-child::after{
-  display:none;
-}
-
-/* HUB CARDS */
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:18px;
-}
-
-.hub{
-  position:relative;
-  display:flex;
-  flex-direction:column;
-  padding:24px;
-  border:1px solid var(--line);
-  border-top:3px solid var(--k);
-  border-radius:18px;
-  background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(14,14,20,.7));
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 8px 24px rgba(0,0,0,.25);
-  transition:.3s;
-  scroll-margin-top:90px;
-}
-
-.hub:hover{
-  transform:translateY(-5px);
-  border-color:var(--k);
-  box-shadow:0 14px 40px rgba(0,0,0,.4),0 0 28px color-mix(in srgb,var(--k),transparent 80%);
-}
-
-.hub.flash{
-  animation:flash 1.2s ease;
-}
-
-@keyframes flash{
-  0%,60%{
-    box-shadow:0 0 40px var(--k),0 0 90px color-mix(in srgb,var(--k),transparent 50%);
-  }
-}
-
-.hub-top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-}
-
-.icon{
-  width:46px;
-  height:46px;
-  border-radius:13px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:23px;
-  background:color-mix(in srgb,var(--k),transparent 85%);
-}
-
-.status{
-  font-size:10px;
-  font-weight:bold;
-  letter-spacing:.8px;
-  padding:5px 9px;
-  border-radius:100px;
-}
-
-.status.live{
-  background:rgba(0,255,157,.12);
-  color:#00ff9d;
-}
-
-.status.soon{
-  background:rgba(255,255,255,.08);
-  color:var(--muted);
-}
-
-.hub h3{
-  margin-top:16px;
-  font-size:20px;
-  color:#fff;
-}
-
-.code{
-  color:var(--k);
-  font-size:12px;
-  font-weight:bold;
-  letter-spacing:1px;
-  margin-top:3px;
-}
-
-.hub p{
-  margin-top:10px;
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.6;
-  flex:1;
-}
-
-.tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  margin-top:14px;
-}
-
-.tags span{
-  font-size:11px;
-  padding:5px 9px;
-  border-radius:7px;
-  background:rgba(255,255,255,.06);
-  color:#d8d8e5;
-}
-
-.btn{
-  display:inline-block;
-  margin-top:18px;
-  padding:13px 18px;
-  border-radius:11px;
-  font-size:13px;
-  font-weight:bold;
-  text-decoration:none;
-  text-align:center;
-  background:var(--k);
-  color:#07070a;
-  transition:.2s;
-}
-
-.btn:hover{
-  filter:brightness(1.12);
-  transform:translateY(-2px);
-}
-
-.btn.off{
-  background:rgba(255,255,255,.06);
-  color:var(--muted);
-  pointer-events:none;
-}
-
-/* ABOUT */
-
-.about{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:16px;
-}
-
-.about div{
-  padding:22px;
-  border:1px solid var(--line);
-  border-radius:16px;
-  background:rgba(255,255,255,.035);
-}
-
-.about h4{
-  font-size:16px;
-  color:#fff;
-}
-
-.about p{
-  margin-top:8px;
-  font-size:14px;
-  color:var(--muted);
-  line-height:1.6;
-}
-
-/* FOOTER */
-
-footer{
-  margin-top:80px;
-  padding:44px 20px;
-  border-top:1px solid var(--line);
-  text-align:center;
-  background:rgba(0,0,0,.3);
-}
-
-.fline{
-  width:100px;
-  height:2px;
-  margin:16px auto;
-  background:linear-gradient(90deg,var(--cyan),var(--purple));
-  border-radius:10px;
-}
-
-footer p{
-  color:var(--muted);
-  font-size:13px;
-  margin-top:6px;
-}
-
-footer a{
-  color:var(--cyan);
-  text-decoration:none;
-}
-
-footer a:hover{
-  text-decoration:underline;
-}
-
-/* MOBILE RESPONSIVENESS */
-
-@media(max-width:700px){
-
-  .hero{
-    padding-top:60px;
-  }
-
-  .sec{
-    margin:50px 0;
-  }
-
-  .sec-title{
-    font-size:22px;
-  }
-
-  .step{
-    flex:0 0 190px;
-  }
-
-  .grid{
-    grid-template-columns:1fr;
-  }
-
-  .btn,
-  .cta{
-    padding:14px 20px;
-  }
-}
-
-/* REDUCED MOTION */
-
-@media(prefers-reduced-motion:reduce){
-
-  .logo-orbit,
-  .logo-orbit::before,
-  .logo-orbit::after,
-  .intro-loader span{
-    animation-duration:3s!important;
-  }
-
-  html{
-    scroll-behavior:auto;
-  }
-}
-</style></head><body><!-- OPENING LOGO ANIMATION: LOGO ONLY APPEARS HERE --><div id="logoIntro" aria-label="thoEdge loading screen">
-  <div class="logo-orbit">
-    <div class="logo-circle">
-      <img
-        src="logo.png"
-        alt="thoEdge logo"
-        onerror="this.style.display='none'">
-    </div>
-  </div>
-</div><!-- HEADER: ONLY TEXT, NO LOGO OR NAVIGATION BUTTONS --><header id="hd">
-  <div class="nav-container">
-    <a class="brand" href="#home" aria-label="thoEdge Home">
-      <span class="wordmark">tho<b>Edge</b></span>
-    </a>
-  </div>
-</header><!-- HERO SECTION --><section class="hero" id="home">  <span class="pill">
-    STUDY HUBS • CLASS 10 TO ENGINEERING AND BEYOND
-  </span>  <h1>One platform. <span>Many hubs.</span></h1>  <p>
-    thoEdge brings focused study hubs together, so every student finds
-    the right resources for the right stage, from boards to entrance
-    exams to engineering and careers.
-  </p><a class="cta" href="#hubs">Explore hubs</a>
-
-</section><div class="wrap">  <!-- STUDENT JOURNEY -->  <section class="sec" id="journey"><h2 class="sec-title">Student Journey</h2>
-
-<p class="sec-desc">
-  Pick your stage. Each step leads to its own hub.
-</p>
-
-<div class="journey" id="journey-list"></div>
-
-  </section>  <!-- ALL HUBS -->  <section class="sec" id="hubs"><h2 class="sec-title">All Hubs</h2>
-
-<p class="sec-desc">
-  Every hub has its own theme and focus.
-</p>
-
-<div class="grid" id="hub-grid"></div>
-
-  </section>  <!-- ABOUT -->  <section class="sec" id="about"><h2 class="sec-title">Why thoEdge</h2>
-
-<p class="sec-desc">
-  Simple, organized and free to use.
-</p>
-
-<div class="about">
-
-  <div>
-    <h4>Focused hubs</h4>
-    <p>
-      Each hub does one job well, instead of one crowded site
-      doing everything.
-    </p>
-  </div>
-
-  <div>
-    <h4>Organized by stage</h4>
-    <p>
-      From Class 10 boards to engineering, resources follow
-      the way students actually study.
-    </p>
-  </div>
-
-  <div>
-    <h4>Built to grow</h4>
-    <p>
-      New hubs are added over time. The next ones are already planned.
-    </p>
-  </div>
-
-</div>
-
-  </section></div><!-- FOOTER --><footer>  <div class="wordmark" style="font-size:18px">
-    tho<b>Edge</b>
-  </div>  <div class="fline"></div>  <p>Copyright © 2026 • thoEdge Creations!</p>  <p>Founded by Matta Thoyajaksh</p>  <p style="margin-top:12px">
-    <a href="#home">Back to top</a>
-    &nbsp;•&nbsp;
-    <a href="mailto:YOUR_EMAIL@example.com">Contact</a>
-  </p></footer><script>
-
-/* HUB LINKS */
-
-const hubs = [
-
-  {
-    id:"tbh",
-    icon:"📖",
-    name:"Boards Hub",
-    code:"TBH",
-    color:"#f59e0b",
-    status:"live",
-    link:"https://thoedge.github.io/TBH/",
-    stage:"Class 10 & 12",
-    desc:"Board exam preparation: notes, chapter-wise resources, previous papers and revision material.",
-    tags:["Class 10","Class 12","PYQs","Notes"]
-  },
-
-  {
-    id:"tjh",
-    icon:"🎯",
-    name:"JEE Hub",
-    code:"TJH",
-    color:"#00aaff",
-    status:"live",
-    link:"https://thoedge.github.io/TJH/",
-    stage:"Class 11-12",
-    desc:"JEE Main & Advanced and other entrance exams: books, notes, formulas, shortcuts, PYQs, DPPs and mock tests.",
-    tags:["JEE Main","JEE Advanced","BITSAT","NEET"]
-  },
-
-  {
-    id:"eng",
-    icon:"🛠️",
-    name:"Engineering Hub",
-    code:"TEH",
-    color:"#10b981",
-    status:"live",
-    link:"https://thoedge.github.io/TEH/",
-    stage:"Engineering",
-    desc:"Year-wise and branch-wise notes, university question papers, lab manuals and projects.",
-    tags:["Year 1-4","Branches","Notes","Labs"]
-  },
-
-  {
-    id:"skills",
-    icon:"💻",
-    name:"Tech Skills Hub",
-    code:"TSH",
-    color:"#ec4899",
-    status:"live",
-    link:"https://thoedge.github.io/TSH/",
-    stage:"Skills",
-    desc:"Roadmaps and free resources for coding, web development, AI and data structures.",
-    tags:["Coding","Web","AI","DSA"]
-  },
-
-  {
-    id:"gate",
-    icon:"🧭",
-    name:"GATE Hub",
-    code:"TGH",
-    color:"#6366f1",
-    status:"live",
-    link:"https://thoedge.github.io/TGH/",
-    stage:"After engineering",
-    desc:"GATE preparation by branch with syllabus, PYQs, notes and test practice.",
-    tags:["GATE","PYQs","Mock tests"]
-  },
-
-  {
-    id:"career",
-    icon:"🚀",
-    name:"Career Hub",
-    code:"TCH",
-    color:"#eab308",
-    status:"live",
-    link:"https://thoedge.github.io/TCH/",
-    stage:"Careers",
-    desc:"Resume help, internships, placement preparation and interview questions.",
-    tags:["Resume","Internships","Placements"]
-  }
-
-];
-
-/* STUDENT JOURNEY DATA */
-
-const journey = [
-
-  {
-    s:"STEP 1",
-    t:"Class (X & XII)",
-    d:"CBSE Board Exams",
-    hub:"tbh"
-  },
-
-  {
-    s:"STEP 2",
-    t:"Class XI & XII (PCM)",
-    d:"All Competitive Exams",
-    hub:"tjh"
-  },
-
-  {
-    s:"STEP 3",
-    t:"Engineering",
-    d:"Branch & semester",
-    hub:"eng"
-  },
-
-  {
-    s:"STEP 4",
-    t:"Skills",
-    d:"Tech & coding",
-    hub:"skills"
-  },
-
-  {
-    s:"STEP 5",
-    t:"Beyond",
-    d:"GATE & careers",
-    hub:"gate"
-  }
-
-];
-
-/* HELPER FUNCTIONS */
-
-const $ = id => document.getElementById(id);
-
-const esc = s =>
-  String(s).replace(/[&<>"']/g, c => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#39;"
-  }[c]));
-
-const byId = id => hubs.find(h => h.id === id);
-
-/* GENERATE HUB CARDS */
-
-$("hub-grid").innerHTML = hubs.map(h => {
-
-  const ready =
-    h.status === "live" &&
-    h.link &&
-    !h.link.startsWith("YOUR_");
-
-  const btn = ready
-    ? `<a class="btn hub-link" href="${esc(h.link)}">Open ${esc(h.code)} →</a>`
-    : `<span class="btn off">${h.status === "live" ? "Check link" : "Coming soon"}</span>`;
-
-  return `
-    <article class="hub" id="hub-${h.id}" style="--k:${h.color}">
-
-      <div class="hub-top">
-
-        <div class="icon">${h.icon}</div>
-
-        <span class="status ${h.status}">
-          ${h.status === "live" ? "LIVE" : "COMING SOON"}
-        </span>
-
-      </div>
-
-      <h3>${esc(h.name)}</h3>
-
-      <div class="code">
-        ${esc(h.code)} • ${esc(h.stage)}
-      </div>
-
-      <p>${esc(h.desc)}</p>
-
-      <div class="tags">
-        ${h.tags.map(t => `<span>${esc(t)}</span>`).join("")}
-      </div>
-
-      ${btn}
-
-    </article>
-  `;
-
-}).join("");
-
-/* GENERATE STUDENT JOURNEY */
-
-$("journey-list").innerHTML = journey.map(j => {
-
-  const h = byId(j.hub);
-
-  return `
-    <div
-      class="step"
-      tabindex="0"
-      role="button"
-      aria-label="${esc(j.t)}: open ${esc(h.name)}"
-      data-h="${j.hub}"
-      style="--k:${h.color}">
-
-      <small>${esc(j.s)}</small>
-
-      <h4>${esc(j.t)}</h4>
-
-      <p>${esc(j.d)}</p>
-
-    </div>
-  `;
-
-}).join("");
-
-/* JOURNEY INTERACTIONS */
-
-document.querySelectorAll(".step").forEach(el => {
-
-  const go = () => {
-
-    const card = $("hub-" + el.dataset.h);
-
-    if (!card) return;
-
-    card.scrollIntoView({
-      behavior:"smooth",
-      block:"center"
-    });
-
-    card.classList.remove("flash");
-
-    void card.offsetWidth;
-
-    card.classList.add("flash");
-
-  };
-
-  el.onclick = go;
-
-  el.onkeydown = e => {
-
-    if (e.key === "Enter" || e.key === " ") {
-
-      e.preventDefault();
-
-      go();
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b18">
+  <meta name="description" content="thoEdge — your destination for boards, JEE, engineering, technology skills, GATE and careers.">
+
+  <title>thoEdge — Learn Beyond Limits</title>
+
+  <style>
+    /* ==============================
+       GLOBAL STYLES
+    ============================== */
+
+    :root {
+      --bg: #080b18;
+      --card: #11182b;
+      --cyan: #50eaff;
+      --blue: #648cff;
+      --purple: #a879ff;
+      --pink: #ff79c8;
+      --gold: #ffd779;
+      --green: #74ffd2;
+      --text: #f5f7ff;
+      --muted: #a7b1cc;
+      --border: rgba(255,255,255,.11);
     }
 
-  };
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-});
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
 
-/* HEADER SCROLL BEHAVIOR */
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
 
-addEventListener("scroll", () => {
+      background:
+        radial-gradient(circle at 10% 8%, rgba(80,234,255,.09), transparent 28%),
+        radial-gradient(circle at 90% 25%, rgba(168,121,255,.11), transparent 30%),
+        var(--bg);
+    }
 
-  $("hd").classList.toggle("hidden", scrollY >= 60);
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-}, {passive:true});
+    button {
+      font: inherit;
+    }
 
-/* LOGO INTRO ANIMATION */
+    .container {
+      width: min(1160px, 91%);
+      margin: auto;
+    }
 
-const intro = $("logoIntro");
+    .section {
+      padding: 85px 0;
+    }
 
-let introPromise = null;
+    .gradient-text {
+      color: transparent;
+      background: linear-gradient(100deg, var(--cyan), var(--blue), var(--purple), var(--pink));
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
 
-function playLogoIntro() {
+    .section-heading {
+      max-width: 720px;
+      margin: 0 auto 40px;
+      text-align: center;
+    }
 
-  if (introPromise) {
-    return introPromise;
-  }
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 15px;
+      padding: 7px 14px;
+      border: 1px solid rgba(80,234,255,.25);
+      border-radius: 30px;
+      color: var(--cyan);
+      background: rgba(80,234,255,.05);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
 
-  intro.classList.remove("hide");
+    .section-heading h2 {
+      margin-bottom: 12px;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.2;
+      letter-spacing: -1px;
+    }
 
-  intro.style.display = "flex";
+    .section-heading p {
+      color: var(--muted);
+    }
 
-  introPromise = new Promise(resolve => {
 
-    setTimeout(() => {
+    /* ==============================
+       LOGO INTRO
+       LOGO ONLY — NO TEXT
+    ============================== */
 
+    #intro {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(circle at center, rgba(80,234,255,.12), transparent 32%),
+        radial-gradient(circle at center, rgba(168,121,255,.10), transparent 50%),
+        #070a15;
+
+      opacity: 1;
+      visibility: visible;
+
+      transition: opacity .4s ease, visibility .4s ease;
+    }
+
+    #intro.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-grid {
+      position: absolute;
+      inset: 0;
+
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+
+      background-size: 48px 48px;
+
+      mask-image: radial-gradient(ellipse at center, black, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black, transparent 75%);
+    }
+
+    .intro-content {
+      position: relative;
+      z-index: 2;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-orbit {
+      position: relative;
+
+      width: 220px;
+      height: 220px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      animation: logoEntrance 2.6s cubic-bezier(.2,.7,.2,1) both;
+    }
+
+    .orbit-ring {
+      position: absolute;
+      inset: 0;
+
+      border: 1px solid rgba(80,234,255,.7);
+      border-radius: 50%;
+
+      box-shadow:
+        0 0 22px rgba(80,234,255,.15),
+        inset 0 0 22px rgba(80,234,255,.06);
+
+      animation: ringSpin 9s linear infinite;
+    }
+
+    .orbit-ring::before,
+    .orbit-ring::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .orbit-ring::before {
+      top: 18px;
+      left: 25px;
+      background: var(--cyan);
+      box-shadow: 0 0 18px var(--cyan);
+    }
+
+    .orbit-ring::after {
+      right: 15px;
+      bottom: 38px;
+      background: var(--pink);
+      box-shadow: 0 0 18px var(--pink);
+    }
+
+    .orbit-ring.ring-two {
+      inset: 16px;
+      border-color: rgba(168,121,255,.75);
+      animation: ringSpinReverse 7s linear infinite;
+    }
+
+    .orbit-ring.ring-two::before {
+      background: var(--purple);
+      box-shadow: 0 0 18px var(--purple);
+    }
+
+    .orbit-ring.ring-two::after {
+      background: var(--blue);
+      box-shadow: 0 0 18px var(--blue);
+    }
+
+    /* Your actual logo image */
+
+    .intro-logo-image {
+      position: relative;
+      z-index: 5;
+
+      display: block;
+
+      width: 125px;
+      height: 125px;
+
+      object-fit: contain;
+
+      filter: drop-shadow(0 0 14px rgba(80,234,255,.35));
+    }
+
+    @keyframes logoEntrance {
+      0% {
+        opacity: 0;
+        transform: scale(.45) rotate(-35deg);
+      }
+
+      40% {
+        opacity: 1;
+        transform: scale(1.08) rotate(10deg);
+      }
+
+      70% {
+        transform: scale(.97) rotate(-4deg);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+      }
+    }
+
+    @keyframes ringSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes ringSpinReverse {
+      to { transform: rotate(-360deg); }
+    }
+
+
+    /* ==============================
+       HEADER
+    ============================== */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      padding: 15px 0;
+
+      background: rgba(8,11,24,.8);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      transition: transform .25s ease, opacity .25s ease;
+    }
+
+    .site-header.header-hidden {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .wordmark {
+      font-size: 1.75rem;
+      font-weight: 950;
+      letter-spacing: -1px;
+    }
+
+    .wordmark span,
+    .footer-brand span {
+      color: var(--cyan);
+    }
+
+
+    /* ==============================
+       HERO
+    ============================== */
+
+    .hero {
+      min-height: 570px;
+      display: flex;
+      align-items: center;
+      padding: 85px 0;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      margin-bottom: 25px;
+      padding: 9px 15px;
+
+      border: 1px solid var(--border);
+      border-radius: 30px;
+
+      background: rgba(255,255,255,.035);
+      color: #dce5ff;
+
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px var(--green);
+    }
+
+    .hero h1 {
+      margin-bottom: 22px;
+      font-size: clamp(2.8rem, 8vw, 6rem);
+      font-weight: 950;
+      letter-spacing: -3px;
+      line-height: 1.08;
+    }
+
+    .hero h1 span {
+      display: block;
+    }
+
+    .hero-description {
+      max-width: 690px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.85;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      min-height: 49px;
+      padding: 12px 23px;
+
+      border: 1px solid transparent;
+      border-radius: 13px;
+
+      font-size: .92rem;
+      font-weight: 800;
+
+      cursor: pointer;
+
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+    }
+
+    .button-primary {
+      color: #07101c;
+      background: linear-gradient(110deg, var(--cyan), #8db9ff);
+      box-shadow: 0 10px 30px rgba(80,234,255,.13);
+    }
+
+    .button-secondary {
+      color: var(--text);
+      background: rgba(255,255,255,.035);
+      border-color: var(--border);
+    }
+
+    .hero-note {
+      margin-top: 22px;
+      color: #8793b1;
+      font-size: .8rem;
+    }
+
+
+    /* ==============================
+       STATS
+    ============================== */
+
+    .stats {
+      padding-bottom: 30px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .stat-card {
+      padding: 22px 12px;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 950;
+    }
+
+    .cyan { color: var(--cyan); }
+    .purple { color: var(--purple); }
+    .pink { color: var(--pink); }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: .83rem;
+    }
+
+
+    /* ==============================
+       HUB CARDS
+    ============================== */
+
+    .hub-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 22px;
+    }
+
+    .hub-card {
+      --accent: var(--cyan);
+      --accent-rgb: 80,234,255;
+
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+
+      min-height: 320px;
+      padding: 25px;
+
+      overflow: hidden;
+
+      border: 1px solid var(--border);
+      border-radius: 23px;
+
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.01)),
+        var(--card);
+
+      box-shadow: 0 18px 50px rgba(0,0,0,.22);
+
+      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    }
+
+    .hub-card::before {
+      content: "";
+      position: absolute;
+
+      width: 180px;
+      height: 180px;
+
+      top: -100px;
+      right: -90px;
+
+      border-radius: 50%;
+      background: rgba(var(--accent-rgb),.15);
+      filter: blur(40px);
+
+      pointer-events: none;
+    }
+
+    .hub-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(var(--accent-rgb),.5);
+      box-shadow: 0 25px 60px rgba(0,0,0,.35);
+    }
+
+    .boards {
+      --accent: var(--gold);
+      --accent-rgb: 255,215,121;
+    }
+
+    .jee {
+      --accent: var(--cyan);
+      --accent-rgb: 80,234,255;
+    }
+
+    .engineering {
+      --accent: var(--purple);
+      --accent-rgb: 168,121,255;
+    }
+
+    .skills {
+      --accent: var(--green);
+      --accent-rgb: 116,255,210;
+    }
+
+    .gate {
+      --accent: var(--pink);
+      --accent-rgb: 255,121,200;
+    }
+
+    .career {
+      --accent: #91aaff;
+      --accent-rgb: 145,170,255;
+    }
+
+    .hub-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 23px;
+    }
+
+    .hub-icon {
+      width: 58px;
+      height: 58px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid rgba(var(--accent-rgb),.25);
+      border-radius: 17px;
+
+      background: rgba(var(--accent-rgb),.09);
+      color: var(--accent);
+
+      font-size: 1.65rem;
+    }
+
+    .hub-code {
+      padding: 6px 10px;
+
+      border: 1px solid rgba(var(--accent-rgb),.25);
+      border-radius: 9px;
+
+      color: var(--accent);
+      background: rgba(var(--accent-rgb),.05);
+
+      font-size: .73rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .hub-card h3 {
+      margin-bottom: 9px;
+      font-size: 1.35rem;
+      font-weight: 900;
+    }
+
+    .hub-card p {
+      margin-bottom: 20px;
+      color: var(--muted);
+      font-size: .91rem;
+      line-height: 1.8;
+    }
+
+    .hub-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: auto;
+      margin-bottom: 22px;
+    }
+
+    .hub-tag {
+      padding: 5px 9px;
+
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 8px;
+
+      color: #bac4dc;
+      background: rgba(255,255,255,.025);
+
+      font-size: .71rem;
+    }
+
+    .hub-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+
+      padding: 12px 14px;
+
+      border: 1px solid rgba(var(--accent-rgb),.28);
+      border-radius: 12px;
+
+      background: rgba(var(--accent-rgb),.055);
+      color: var(--accent);
+
+      font-size: .87rem;
+      font-weight: 850;
+
+      transition: background .25s ease;
+    }
+
+    .hub-link:hover {
+      background: rgba(var(--accent-rgb),.13);
+    }
+
+    .hub-arrow {
+      font-size: 1.2rem;
+      transition: transform .25s ease;
+    }
+
+    .hub-link:hover .hub-arrow {
+      transform: translateX(5px);
+    }
+
+
+    /* ==============================
+       LEARNING JOURNEY
+    ============================== */
+
+    .journey-panel {
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 25px;
+
+      background: linear-gradient(
+        135deg,
+        rgba(80,234,255,.045),
+        rgba(168,121,255,.055),
+        rgba(255,121,200,.035)
+      );
+    }
+
+    .journey-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0,1fr));
+      gap: 12px;
+    }
+
+    .journey-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      padding: 18px 9px;
+
+      border: 1px solid var(--border);
+      border-radius: 16px;
+
+      background: rgba(8,11,24,.55);
+      color: var(--text);
+
+      text-align: center;
+      cursor: pointer;
+
+      transition: transform .25s ease, border-color .25s ease;
+    }
+
+    .journey-step:hover {
+      transform: translateY(-5px);
+      border-color: rgba(80,234,255,.5);
+    }
+
+    .journey-number {
+      width: 37px;
+      height: 37px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 10px;
+
+      border-radius: 12px;
+
+      background: rgba(80,234,255,.1);
+      color: var(--cyan);
+
+      font-weight: 950;
+    }
+
+    .journey-step:nth-child(2) .journey-number {
+      color: var(--blue);
+      background: rgba(100,140,255,.12);
+    }
+
+    .journey-step:nth-child(3) .journey-number {
+      color: var(--purple);
+      background: rgba(168,121,255,.12);
+    }
+
+    .journey-step:nth-child(4) .journey-number {
+      color: var(--green);
+      background: rgba(116,255,210,.1);
+    }
+
+    .journey-step:nth-child(5) .journey-number {
+      color: var(--pink);
+      background: rgba(255,121,200,.1);
+    }
+
+    .journey-step:nth-child(6) .journey-number {
+      color: var(--gold);
+      background: rgba(255,215,121,.1);
+    }
+
+    .journey-step strong {
+      margin-bottom: 5px;
+      font-size: .82rem;
+    }
+
+    .journey-step small {
+      color: var(--muted);
+      font-size: .7rem;
+    }
+
+    .journey-hint {
+      margin-top: 18px;
+      color: #8e9ab8;
+      text-align: center;
+      font-size: .8rem;
+    }
+
+
+    /* ==============================
+       ABOUT
+    ============================== */
+
+    .about-panel {
+      max-width: 850px;
+      margin: auto;
+      padding: clamp(25px,5vw,48px);
+
+      border: 1px solid var(--border);
+      border-radius: 26px;
+
+      background: rgba(255,255,255,.025);
+      text-align: center;
+    }
+
+    .about-symbol {
+      width: 60px;
+      height: 60px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin: 0 auto 18px;
+
+      border: 1px solid rgba(80,234,255,.25);
+      border-radius: 18px;
+
+      background: rgba(80,234,255,.07);
+      color: var(--cyan);
+
+      font-size: 1.6rem;
+      font-weight: 950;
+    }
+
+    .about-panel h2 {
+      margin-bottom: 15px;
+      font-size: clamp(1.9rem,5vw,2.7rem);
+    }
+
+    .about-panel p {
+      max-width: 700px;
+      margin: auto;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .about-highlight {
+      color: var(--cyan);
+      font-weight: 800;
+    }
+
+
+    /* ==============================
+       FOOTER
+    ============================== */
+
+    .site-footer {
+      padding: 27px 0;
+      border-top: 1px solid rgba(255,255,255,.07);
+      background: rgba(5,7,16,.45);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .footer-brand {
+      font-size: 1.1rem;
+      font-weight: 950;
+    }
+
+    .footer-copy {
+      color: #8490ad;
+      font-size: .79rem;
+      text-align: center;
+    }
+
+    .back-top {
+      color: var(--cyan);
+      font-size: .82rem;
+      font-weight: 800;
+    }
+
+
+    /* ==============================
+       SCROLL REVEAL
+    ============================== */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    /* ==============================
+       MOBILE RESPONSIVENESS
+    ============================== */
+
+    @media (max-width: 950px) {
+      .hub-grid {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+      }
+
+      .journey-grid {
+        grid-template-columns: repeat(3,minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .section {
+        padding: 65px 0;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 75px 0 60px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.6rem,11vw,4rem);
+        letter-spacing: -2px;
+      }
+
+      .hero-description {
+        font-size: .97rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        max-width: 310px;
+        margin: 30px auto 0;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .stats-grid {
+        gap: 9px;
+      }
+
+      .stat-card {
+        padding: 16px 6px;
+      }
+
+      .stat-number {
+        font-size: 1.45rem;
+      }
+
+      .stat-label {
+        font-size: .7rem;
+      }
+
+      .hub-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hub-card {
+        min-height: 290px;
+      }
+
+      .journey-panel {
+        padding: 15px;
+      }
+
+      .journey-grid {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+
+      .logo-orbit {
+        width: 190px;
+        height: 190px;
+      }
+
+      .intro-logo-image {
+        width: 108px;
+        height: 108px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==============================
+       OPENING SCREEN
+       LOGO INSIDE CIRCLE ONLY
+  ============================== -->
+
+  <div id="intro" aria-label="Logo introduction">
+
+    <div class="intro-grid"></div>
+
+    <div class="intro-content">
+
+      <div class="logo-orbit">
+
+        <div class="orbit-ring"></div>
+        <div class="orbit-ring ring-two"></div>
+
+        <img
+          src="logo.png"
+          alt="thoEdge logo"
+          class="intro-logo-image"
+        >
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==============================
+       HEADER
+  ============================== -->
+
+  <header class="site-header" id="siteHeader">
+
+    <div class="container header-inner">
+
+      <a href="#home" class="wordmark">
+        tho<span>Edge</span>
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <main>
+
+    <!-- ==============================
+         HERO
+    ============================== -->
+
+    <section class="hero" id="home">
+
+      <div class="container hero-content">
+
+        <div class="hero-badge">
+          <span class="live-dot"></span>
+          Your learning journey starts here
+        </div>
+
+        <h1>
+          One Destination.
+          <span class="gradient-text">
+            Endless Possibilities.
+          </span>
+        </h1>
+
+        <p class="hero-description">
+          Welcome to thoEdge — your central destination
+          for school boards, JEE preparation, engineering,
+          technology skills, GATE and career development.
+          Choose your path and start building your future.
+        </p>
+
+        <div class="hero-actions">
+
+          <a href="#hubs" class="button button-primary">
+            Explore All Hubs →
+          </a>
+
+          <a href="#journey" class="button button-secondary">
+            Discover Your Journey ↗
+          </a>
+
+        </div>
+
+        <p class="hero-note">
+          Six learning hubs. One connected destination.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==============================
+         STATS
+    ============================== -->
+
+    <section class="stats">
+
+      <div class="container stats-grid">
+
+        <div class="stat-card reveal">
+          <span class="stat-number cyan">06</span>
+          <span class="stat-label">Dedicated Hubs</span>
+        </div>
+
+        <div class="stat-card reveal">
+          <span class="stat-number purple">01</span>
+          <span class="stat-label">Connected Platform</span>
+        </div>
+
+        <div class="stat-card reveal">
+          <span class="stat-number pink">∞</span>
+          <span class="stat-label">Possibilities to Explore</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==============================
+         SIX HUB CARDS
+    ============================== -->
+
+    <section class="section" id="hubs">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+
+          <span class="eyebrow">Explore thoEdge</span>
+
+          <h2>
+            Choose Your <span class="gradient-text">Hub</span>
+          </h2>
+
+          <p>
+            Choose the destination that matches your goals
+            and continue directly to its website.
+          </p>
+
+        </div>
+
+
+        <div class="hub-grid">
+
+          <!-- TBH -->
+
+          <article class="hub-card boards reveal">
+
+            <div class="hub-top">
+              <div class="hub-icon">📚</div>
+              <span class="hub-code">TBH</span>
+            </div>
+
+            <h3>Boards Hub</h3>
+
+            <p>
+              Your destination for school subjects,
+              board examinations, revision and academic
+              preparation.
+            </p>
+
+            <div class="hub-tags">
+              <span class="hub-tag">CBSE</span>
+              <span class="hub-tag">Study Resources</span>
+              <span class="hub-tag">Revision</span>
+            </div>
+
+            <a
+              class="hub-link"
+              data-hub="TBH"
+              href="https://thoedge.github.io/TBH/"
+            >
+              <span>Enter Boards Hub</span>
+              <span class="hub-arrow">→</span>
+            </a>
+
+          </article>
+
+
+          <!-- TJH -->
+
+          <article class="hub-card jee reveal">
+
+            <div class="hub-top">
+              <div class="hub-icon">⚡</div>
+              <span class="hub-code">TJH</span>
+            </div>
+
+            <h3>JEE Hub</h3>
+
+            <p>
+              Build your engineering entrance preparation
+              through concepts, problem-solving and
+              focused practice.
+            </p>
+
+            <div class="hub-tags">
+              <span class="hub-tag">JEE Main</span>
+              <span class="hub-tag">JEE Advanced</span>
+              <span class="hub-tag">Practice</span>
+            </div>
+
+            <a
+              class="hub-link"
+              data-hub="TJH"
+              href="https://thoedge.github.io/TJH/"
+            >
+              <span>Enter JEE Hub</span>
+              <span class="hub-arrow">→</span>
+            </a>
+
+          </article>
+
+
+          <!-- TEH -->
+
+          <article class="hub-card engineering reveal">
+
+            <div class="hub-top">
+              <div class="hub-icon">🚀</div>
+              <span class="hub-code">TEH</span>
+            </div>
+
+            <h3>Engineering Hub</h3>
+
+            <p>
+              Explore engineering fields, scientific ideas,
+              technical concepts and the technologies
+              shaping tomorrow.
+            </p>
+
+            <div class="hub-tags">
+              <span class="hub-tag">Engineering</span>
+              <span class="hub-tag">Science</span>
+              <span class="hub-tag">Innovation</span>
+            </div>
+
+            <a
+              class="hub-link"
+              data-hub="TEH"
+              href="https://thoedge.github.io/TEH/"
+            >
+              <span>Enter Engineering Hub</span>
+              <span class="hub-arrow">→</span>
+            </a>
+
+          </article>
+
+
+          <!-- TSH -->
+
+          <article class="hub-card skills reveal">
+
+            <div class="hub-top">
+              <div class="hub-icon">💻</div>
+              <span class="hub-code">TSH</span>
+            </div>
+
+            <h3>Tech Skills Hub</h3>
+
+            <p>
+              Discover programming, digital tools,
+              technical skills and practical learning
+              resources.
+            </p>
+
+            <div class="hub-tags">
+              <span class="hub-tag">Coding</span>
+              <span class="hub-tag">Technology</span>
+              <span class="hub-tag">Projects</span>
+            </div>
+
+            <a
+              class="hub-link"
+              data-hub="TSH"
+              href="https://thoedge.github.io/TSH/"
+            >
+              <span>Enter Tech Skills Hub</span>
+              <span class="hub-arrow">→</span>
+            </a>
+
+          </article>
+
+
+          <!-- TGH -->
+
+          <article class="hub-card gate reveal">
+
+            <div class="hub-top">
+              <div class="hub-icon">🎯</div>
+              <span class="hub-code">TGH</span>
+            </div>
+
+            <h3>GATE Hub</h3>
+
+            <p>
+              Explore postgraduate engineering entrance
+              preparation, core subjects and structured
+              practice.
+            </p>
+
+            <div class="hub-tags">
+              <span class="hub-tag">GATE</span>
+              <span class="hub-tag">Core Subjects</span>
+              <span class="hub-tag">Preparation</span>
+            </div>
+
+            <a
+              class="hub-link"
+              data-hub="TGH"
+              href="https://thoedge.github.io/TGH/"
+            >
+              <span>Enter GATE Hub</span>
+              <span class="hub-arrow">→</span>
+            </a>
+
+          </article>
+
+
+          <!-- TCH -->
+
+          <article class="hub-card career reveal">
+
+            <div class="hub-top">
+              <div class="hub-icon">🌟</div>
+              <span class="hub-code">TCH</span>
+            </div>
+
+            <h3>Career Hub</h3>
+
+            <p>
+              Explore career paths, educational opportunities,
+              skill development and your next steps
+              toward your ambitions.
+            </p>
+
+            <div class="hub-tags">
+              <span class="hub-tag">Career Paths</span>
+              <span class="hub-tag">Skills</span>
+              <span class="hub-tag">Planning</span>
+            </div>
+
+            <a
+              class="hub-link"
+              data-hub="TCH"
+              href="https://thoedge.github.io/TCH/"
+            >
+              <span>Enter Career Hub</span>
+              <span class="hub-arrow">→</span>
+            </a>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==============================
+         LEARNING JOURNEY
+    ============================== -->
+
+    <section class="section" id="journey">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+
+          <span class="eyebrow">Your Roadmap</span>
+
+          <h2>
+            Explore Your <span class="gradient-text">Journey</span>
+          </h2>
+
+          <p>
+            Select a step to locate its matching hub.
+          </p>
+
+        </div>
+
+
+        <div class="journey-panel reveal">
+
+          <div class="journey-grid">
+
+            <button class="journey-step" data-target="TBH" type="button">
+              <span class="journey-number">01</span>
+              <strong>School</strong>
+              <small>Build foundations</small>
+            </button>
+
+            <button class="journey-step" data-target="TJH" type="button">
+              <span class="journey-number">02</span>
+              <strong>Entrance</strong>
+              <small>Prepare for JEE</small>
+            </button>
+
+            <button class="journey-step" data-target="TEH" type="button">
+              <span class="journey-number">03</span>
+              <strong>Engineering</strong>
+              <small>Explore your field</small>
+            </button>
+
+            <button class="journey-step" data-target="TSH" type="button">
+              <span class="journey-number">04</span>
+              <strong>Tech Skills</strong>
+              <small>Learn practical skills</small>
+            </button>
+
+            <button class="journey-step" data-target="TGH" type="button">
+              <span class="journey-number">05</span>
+              <strong>Higher Studies</strong>
+              <small>Explore GATE</small>
+            </button>
+
+            <button class="journey-step" data-target="TCH" type="button">
+              <span class="journey-number">06</span>
+              <strong>Career</strong>
+              <small>Plan your future</small>
+            </button>
+
+          </div>
+
+          <p class="journey-hint">
+            Tap a step to find its hub above.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==============================
+         ABOUT
+    ============================== -->
+
+    <section class="section" id="about">
+
+      <div class="container">
+
+        <div class="about-panel reveal">
+
+          <div class="about-symbol">tE</div>
+
+          <h2>
+            What is <span class="gradient-text">thoEdge?</span>
+          </h2>
+
+          <p>
+            <span class="about-highlight">thoEdge</span>
+            brings different educational and skill-development
+            destinations together in one place. From school
+            preparation and engineering entrance exams to
+            technology, higher studies and career exploration,
+            every hub has its own dedicated website. Choose
+            your direction, explore and keep moving forward.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ==============================
+       FOOTER
+  ============================== -->
+
+  <footer class="site-footer">
+
+    <div class="container footer-inner">
+
+      <a href="#home" class="footer-brand">
+        tho<span>Edge</span>
+      </a>
+
+      <p class="footer-copy">
+        © <span id="currentYear"></span> thoEdge.
+        Learn · Build · Grow.
+      </p>
+
+      <a href="#home" class="back-top">
+        Back to top ↑
+      </a>
+
+    </div>
+
+  </footer>
+
+
+  <!-- ==============================
+       JAVASCRIPT
+  ============================== -->
+
+  <script>
+    "use strict";
+
+    const intro = document.getElementById("intro");
+    const siteHeader = document.getElementById("siteHeader");
+    const logoOrbit = intro.querySelector(".logo-orbit");
+
+    let isOpeningHub = false;
+    let introTimer;
+
+
+    /* INITIAL LOGO ANIMATION */
+
+    function showIntro() {
+      intro.classList.remove("hide");
+
+      if (logoOrbit) {
+        logoOrbit.style.animation = "none";
+
+        // Restart the logo entrance animation.
+        void logoOrbit.offsetWidth;
+
+        logoOrbit.style.animation = "";
+      }
+    }
+
+    function hideIntro() {
       intro.classList.add("hide");
+    }
 
-      setTimeout(() => {
+    function startIntro() {
+      showIntro();
 
-        intro.style.display = "none";
+      clearTimeout(introTimer);
 
-        introPromise = null;
+      introTimer = setTimeout(function () {
+        hideIntro();
+      }, 3000);
+    }
 
-        resolve();
+    if (document.readyState === "complete") {
+      startIntro();
+    } else {
+      window.addEventListener("load", startIntro, { once: true });
+    }
 
-      },400);
 
-    },2600);
+    /* DIRECT HUB NAVIGATION */
 
-  });
+    document.addEventListener("click", function (event) {
+      const link = event.target.closest("a.hub-link");
 
-  return introPromise;
+      if (!link) return;
 
-}
+      // Preserve opening links in a new tab.
+      if (
+        event.button !== 0 ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
 
-/* SHOW INTRO WHEN THE PAGE LOADS */
+      event.preventDefault();
 
-window.addEventListener("load", () => {
+      if (isOpeningHub) return;
 
-  playLogoIntro();
+      isOpeningHub = true;
 
-});
+      const destination = link.href;
 
-/* SHOW INTRO BEFORE OPENING A HUB */
+      clearTimeout(introTimer);
 
-document.addEventListener("click", async event => {
+      // Keep the logo and circle visible during navigation.
+      showIntro();
 
-  const link = event.target.closest("a.hub-link");
+      // Do not hide the intro before changing websites.
+      setTimeout(function () {
+        window.location.href = destination;
+      }, 2600);
+    });
 
-  if (!link) return;
 
-  event.preventDefault();
+    /* LEARNING JOURNEY BUTTONS */
 
-  if (link.dataset.opening === "true") return;
+    document.querySelectorAll(".journey-step").forEach(function (step) {
+      step.addEventListener("click", function () {
+        const code = step.dataset.target;
 
-  link.dataset.opening = "true";
+        const link = document.querySelector(
+          'a.hub-link[data-hub="' + code + '"]'
+        );
 
-  const destination = link.href;
+        if (!link) return;
 
-  await playLogoIntro();
+        const card = link.closest(".hub-card");
 
-  window.location.href = destination;
+        if (!card) return;
 
-});
+        card.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
 
-</script></body>
+        card.animate(
+          [
+            { transform: "scale(1)" },
+            { transform: "scale(1.025)" },
+            { transform: "scale(1)" }
+          ],
+          {
+            duration: 600,
+            easing: "ease-in-out"
+          }
+        );
+      });
+    });
+
+
+    /* HEADER SCROLL EFFECT */
+
+    function updateHeader() {
+      siteHeader.classList.toggle(
+        "header-hidden",
+        window.scrollY >= 60
+      );
+    }
+
+    window.addEventListener("scroll", updateHeader, {
+      passive: true
+    });
+
+    updateHeader();
+
+
+    /* SCROLL REVEAL */
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12
+      });
+
+      revealElements.forEach(function (element) {
+        observer.observe(element);
+      });
+    } else {
+      revealElements.forEach(function (element) {
+        element.classList.add("visible");
+      });
+    }
+
+
+    /* AUTOMATIC FOOTER YEAR */
+
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+
+  </script>
+
+</body>
 </html>
