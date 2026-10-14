@@ -1,287 +1,1155 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>thoEdge - Study Hubs from Class 10 to Engineering</title>
 <meta name="description" content="thoEdge is a platform of focused study hubs: Boards, JEE, Engineering, Tech Skills, GATE and Careers.">
-<meta name="theme-color" content="#07070a">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307070a'/%3E%3Ctext x='32' y='43' font-size='30' font-weight='bold' text-anchor='middle' fill='%2300f0ff' font-family='Arial'%3Et%3C/text%3E%3C/svg%3E">
-<meta property="og:type" content="website">
+<meta name="theme-color" content="#07070a"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307070a'/%3E%3Ctext x='32' y='43' font-size='30' font-weight='bold' text-anchor='middle' fill='%2300f0ff' font-family='Arial'%3Et%3C/text%3E%3C/svg%3E"><meta property="og:type" content="website">
 <meta property="og:title" content="thoEdge - Study Hubs">
 <meta property="og:description" content="One platform. Many hubs. From Class 10 to Engineering and beyond.">
-<meta property="og:image" content="logo.png">
+<meta property="og:image" content="logo.png"><style>
+:root{
+  --bg:#07070a;
+  --card:#0e0e14;
+  --text:#ececf3;
+  --muted:#b0b0c4;
+  --line:rgba(255,255,255,.14);
+  --cyan:#00f0ff;
+  --purple:#8b5cf6;
+}
 
-<style>
-:root{--bg:#07070a;--card:#0e0e14;--text:#ececf3;--muted:#b0b0c4;--line:rgba(255,255,255,.14);--cyan:#00f0ff;--purple:#8b5cf6}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:radial-gradient(circle at 50% -10%,rgba(255,255,255,.07),transparent 45%),var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:-1}
-:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  background:radial-gradient(circle at 50% -10%,rgba(255,255,255,.07),transparent 45%),var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:44px 44px;
+  pointer-events:none;
+  z-index:-1;
+}
+
+:focus-visible{
+  outline:2px solid var(--cyan);
+  outline-offset:2px;
+}
 
 /* THREE-SECOND LOGO INTRO */
-#logoIntro{position:fixed;inset:0;z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:#07070a;opacity:1;visibility:visible}
-#logoIntro.hide{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .4s ease,visibility .4s ease}
-.logo-orbit{position:relative;width:min(78vw,310px);height:min(78vw,310px);display:grid;place-items:center;border-radius:50%;animation:orbitEntrance 2.6s ease-in-out both;flex-shrink:0}
-.logo-orbit::before,.logo-orbit::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid transparent}
-.logo-orbit::before{border-top-color:#00f0ff;border-right-color:#00aaff;animation:spinOrbit 1.2s linear infinite}
-.logo-orbit::after{inset:8px;border-bottom-color:#8b5cf6;border-left-color:#ec4899;animation:spinOrbitReverse 1.7s linear infinite}
-.logo-circle{width:calc(100% - 32px);height:calc(100% - 32px);display:grid;place-items:center;overflow:hidden;border-radius:50%;border:2px solid rgba(0,240,255,.9);background:#fff;box-shadow:0 0 30px rgba(0,240,255,.3)}
-.logo-circle img{display:block;width:100%;height:100%;object-fit:contain;padding:0;border-radius:50%}
-#logoIntro h2{font-size:23px;letter-spacing:4px;font-weight:800;color:#fff;text-align:center}
-#logoIntro h2 span{background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
-#logoIntro p{color:var(--cyan);font-size:11px;letter-spacing:3px;text-align:center}
-#logoIntro h2,#logoIntro p,.intro-loader{display:none!important}
-.intro-loader{width:150px;height:3px;margin-top:7px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}
-.intro-loader span{display:block;width:40%;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--cyan),var(--purple));animation:loadLine 2.6s ease-in-out forwards}
-@keyframes spinOrbit{to{transform:rotate(360deg)}}
-@keyframes spinOrbitReverse{to{transform:rotate(-360deg)}}
-@keyframes orbitEntrance{0%{transform:scale(.55);opacity:0}25%{transform:scale(1.05);opacity:1}75%{transform:scale(1);opacity:1}100%{transform:scale(.96);opacity:1}}
-@keyframes loadLine{from{width:0}to{width:100%}}
+
+#logoIntro{
+  position:fixed;
+  inset:0;
+  z-index:999999;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  background:#07070a;
+  opacity:1;
+  visibility:visible;
+}
+
+#logoIntro.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .4s ease,visibility .4s ease;
+}
+
+.logo-orbit{
+  position:relative;
+  width:min(78vw,310px);
+  height:min(78vw,310px);
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  animation:orbitEntrance 2.6s ease-in-out both;
+  flex-shrink:0;
+}
+
+.logo-orbit::before,
+.logo-orbit::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  border:2px solid transparent;
+}
+
+.logo-orbit::before{
+  border-top-color:#00f0ff;
+  border-right-color:#00aaff;
+  animation:spinOrbit 1.2s linear infinite;
+}
+
+.logo-orbit::after{
+  inset:8px;
+  border-bottom-color:#8b5cf6;
+  border-left-color:#ec4899;
+  animation:spinOrbitReverse 1.7s linear infinite;
+}
+
+.logo-circle{
+  width:calc(100% - 32px);
+  height:calc(100% - 32px);
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  border-radius:50%;
+  border:2px solid rgba(0,240,255,.9);
+  background:#fff;
+  box-shadow:0 0 30px rgba(0,240,255,.3);
+}
+
+.logo-circle img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  padding:0;
+  border-radius:50%;
+}
+
+#logoIntro h2{
+  font-size:23px;
+  letter-spacing:4px;
+  font-weight:800;
+  color:#fff;
+  text-align:center;
+}
+
+#logoIntro h2 span{
+  background:linear-gradient(90deg,var(--cyan),var(--purple));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+#logoIntro p{
+  color:var(--cyan);
+  font-size:11px;
+  letter-spacing:3px;
+  text-align:center;
+}
+
+#logoIntro h2,
+#logoIntro p,
+.intro-loader{
+  display:none!important;
+}
+
+.intro-loader{
+  width:150px;
+  height:3px;
+  margin-top:7px;
+  border-radius:99px;
+  background:rgba(255,255,255,.1);
+  overflow:hidden;
+}
+
+.intro-loader span{
+  display:block;
+  width:40%;
+  height:100%;
+  border-radius:99px;
+  background:linear-gradient(90deg,var(--cyan),var(--purple));
+  animation:loadLine 2.6s ease-in-out forwards;
+}
+
+@keyframes spinOrbit{
+  to{transform:rotate(360deg)}
+}
+
+@keyframes spinOrbitReverse{
+  to{transform:rotate(-360deg)}
+}
+
+@keyframes orbitEntrance{
+  0%{transform:scale(.55);opacity:0}
+  25%{transform:scale(1.05);opacity:1}
+  75%{transform:scale(1);opacity:1}
+  100%{transform:scale(.96);opacity:1}
+}
+
+@keyframes loadLine{
+  from{width:0}
+  to{width:100%}
+}
 
 /* HEADER */
-header{position:sticky;top:0;z-index:100;background:rgba(7,7,10,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line);transition:transform .3s}
-header.hidden{transform:translateY(-110%)}
-.brand{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none}
-.brand img{width:48px;height:48px;object-fit:contain;border-radius:10px;background:#fff;padding:3px;flex:0 0 48px}
-.wordmark{font-size:22px;font-weight:800;letter-spacing:-.5px;color:#fff}
-.wordmark b{background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
-.links{display:flex;gap:6px}
-.links a{padding:9px 14px;border-radius:10px;font-size:13px;text-decoration:none;color:var(--muted);transition:.2s}
-.links a:hover{color:#fff;background:rgba(255,255,255,.07)}
-.menu-btn{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:#fff;font-size:20px;cursor:pointer}
-.menu{display:none;position:absolute;top:100%;right:14px;min-width:200px;padding:8px;border-radius:14px;border:1px solid var(--line);background:rgba(10,10,16,.97);box-shadow:0 14px 40px rgba(0,0,0,.5)}
-.menu.open{display:block}
-.menu a{display:block;padding:13px 14px;border-radius:10px;text-decoration:none;font-size:14px}
-.menu a:hover{background:rgba(255,255,255,.07)}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(7,7,10,.88);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+  transition:transform .3s;
+}
+
+header.hidden{
+  transform:translateY(-110%);
+}
+
+.nav-container{
+  max-width:1200px;
+  margin:auto;
+  padding:10px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+  text-decoration:none;
+}
+
+.brand img{
+  width:48px;
+  height:48px;
+  object-fit:contain;
+  border-radius:10px;
+  background:#fff;
+  padding:3px;
+  flex:0 0 48px;
+}
+
+.wordmark{
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:-.5px;
+  color:#fff;
+}
+
+.wordmark b{
+  background:linear-gradient(90deg,var(--cyan),var(--purple));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.links{
+  display:flex;
+  gap:6px;
+}
+
+.links a{
+  padding:9px 14px;
+  border-radius:10px;
+  font-size:13px;
+  text-decoration:none;
+  color:var(--muted);
+  transition:.2s;
+}
+
+.links a:hover{
+  color:#fff;
+  background:rgba(255,255,255,.07);
+}
+
+.menu-btn{
+  display:none;
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.05);
+  color:#fff;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.menu{
+  display:none;
+  position:absolute;
+  top:100%;
+  right:14px;
+  min-width:200px;
+  padding:8px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:rgba(10,10,16,.97);
+  box-shadow:0 14px 40px rgba(0,0,0,.5);
+}
+
+.menu.open{
+  display:block;
+}
+
+.menu a{
+  display:block;
+  padding:13px 14px;
+  border-radius:10px;
+  text-decoration:none;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.menu a:hover{
+  background:rgba(255,255,255,.07);
+  color:#fff;
+}
 
 /* HERO */
-.hero{max-width:900px;margin:auto;padding:90px 20px 40px;text-align:center}
-.pill{display:inline-block;padding:7px 14px;border:1px solid var(--line);border-radius:100px;font-size:12px;color:var(--muted);letter-spacing:.5px}
-.hero h1{margin-top:22px;font-size:clamp(34px,6.5vw,66px);line-height:1.05;font-weight:800;letter-spacing:-1.5px;color:#fff}
-.hero h1 span{background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{max-width:620px;margin:20px auto 0;color:var(--muted);font-size:16px;line-height:1.7}
-.cta{display:inline-block;margin-top:28px;padding:14px 26px;border-radius:12px;background:#fff;color:#07070a;font-weight:bold;font-size:14px;text-decoration:none;transition:.2s}
-.cta:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,255,255,.18)}
+
+.hero{
+  max-width:900px;
+  margin:auto;
+  padding:90px 20px 40px;
+  text-align:center;
+}
+
+.pill{
+  display:inline-block;
+  padding:7px 14px;
+  border:1px solid var(--line);
+  border-radius:100px;
+  font-size:12px;
+  color:var(--muted);
+  letter-spacing:.5px;
+}
+
+.hero h1{
+  margin-top:22px;
+  font-size:clamp(34px,6.5vw,66px);
+  line-height:1.05;
+  font-weight:800;
+  letter-spacing:-1.5px;
+  color:#fff;
+}
+
+.hero h1 span{
+  background:linear-gradient(90deg,var(--cyan),var(--purple));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  max-width:620px;
+  margin:20px auto 0;
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.7;
+}
+
+.cta{
+  display:inline-block;
+  margin-top:28px;
+  padding:14px 26px;
+  border-radius:12px;
+  background:#fff;
+  color:#07070a;
+  font-weight:bold;
+  font-size:14px;
+  text-decoration:none;
+  transition:.2s;
+}
+
+.cta:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 30px rgba(255,255,255,.18);
+}
 
 /* SECTIONS */
-.wrap{max-width:1200px;margin:auto;padding:0 20px}
-.sec{margin:70px 0}
-.sec-title{font-size:26px;font-weight:800;color:#fff}
-.sec-title::after{content:"";display:block;width:50px;height:3px;margin-top:9px;border-radius:3px;background:linear-gradient(90deg,var(--cyan),var(--purple))}
-.sec-desc{color:var(--muted);font-size:14px;margin-top:10px;margin-bottom:24px}
+
+.wrap{
+  max-width:1200px;
+  margin:auto;
+  padding:0 20px;
+}
+
+.sec{
+  margin:70px 0;
+  scroll-margin-top:100px;
+}
+
+.sec-title{
+  font-size:26px;
+  font-weight:800;
+  color:#fff;
+}
+
+.sec-title::after{
+  content:"";
+  display:block;
+  width:50px;
+  height:3px;
+  margin-top:9px;
+  border-radius:3px;
+  background:linear-gradient(90deg,var(--cyan),var(--purple));
+}
+
+.sec-desc{
+  color:var(--muted);
+  font-size:14px;
+  margin-top:10px;
+  margin-bottom:24px;
+}
 
 /* JOURNEY STRIP */
-.journey{display:flex;gap:0;overflow-x:auto;padding-bottom:10px;scrollbar-width:thin}
-.step{flex:1 0 170px;position:relative;padding:16px 14px 16px 16px;margin-right:12px;border:1px solid var(--line);border-top:3px solid var(--k);border-radius:14px;background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.015));cursor:pointer;transition:.25s}
-.step:hover{transform:translateY(-3px);border-color:var(--k);box-shadow:0 8px 26px color-mix(in srgb,var(--k),transparent 80%)}
-.step small{display:block;color:var(--k);font-size:11px;font-weight:bold;letter-spacing:1px}
-.step h4{margin-top:6px;font-size:15px;color:#fff}
-.step p{margin-top:4px;font-size:12px;color:var(--muted)}
-.step::after{content:"›";position:absolute;right:-13px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:20px}
-.step:last-child{margin-right:0}.step:last-child::after{display:none}
+
+.journey{
+  display:flex;
+  gap:0;
+  overflow-x:auto;
+  padding-bottom:10px;
+  scrollbar-width:thin;
+}
+
+.step{
+  flex:1 0 170px;
+  position:relative;
+  padding:16px 14px 16px 16px;
+  margin-right:12px;
+  border:1px solid var(--line);
+  border-top:3px solid var(--k);
+  border-radius:14px;
+  background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.015));
+  cursor:pointer;
+  transition:.25s;
+}
+
+.step:hover{
+  transform:translateY(-3px);
+  border-color:var(--k);
+  box-shadow:0 8px 26px color-mix(in srgb,var(--k),transparent 80%);
+}
+
+.step small{
+  display:block;
+  color:var(--k);
+  font-size:11px;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
+.step h4{
+  margin-top:6px;
+  font-size:15px;
+  color:#fff;
+}
+
+.step p{
+  margin-top:4px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.step::after{
+  content:"›";
+  position:absolute;
+  right:-13px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--muted);
+  font-size:20px;
+}
+
+.step:last-child{
+  margin-right:0;
+}
+
+.step:last-child::after{
+  display:none;
+}
 
 /* HUB CARDS */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
-.hub{position:relative;display:flex;flex-direction:column;padding:24px;border:1px solid var(--line);border-top:3px solid var(--k);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(14,14,20,.7));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 8px 24px rgba(0,0,0,.25);transition:.3s}
-.hub:hover{transform:translateY(-5px);border-color:var(--k);box-shadow:0 14px 40px rgba(0,0,0,.4),0 0 28px color-mix(in srgb,var(--k),transparent 80%)}
-.hub.flash{animation:flash 1.2s ease}
-@keyframes flash{0%,60%{box-shadow:0 0 40px var(--k),0 0 90px color-mix(in srgb,var(--k),transparent 50%)}}
-.icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:23px;background:color-mix(in srgb,var(--k),transparent 85%)}
-.status{font-size:10px;font-weight:bold;letter-spacing:.8px;padding:5px 9px;border-radius:100px}
-.status.live{background:rgba(0,255,157,.12);color:#00ff9d}
-.status.soon{background:rgba(255,255,255,.08);color:var(--muted)}
-.hub h3{margin-top:16px;font-size:20px;color:#fff}
-.code{color:var(--k);font-size:12px;font-weight:bold;letter-spacing:1px;margin-top:3px}
-.hub p{margin-top:10px;color:var(--muted);font-size:14px;line-height:1.6;flex:1}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
-.tags span{font-size:11px;padding:5px 9px;border-radius:7px;background:rgba(255,255,255,.06);color:#d8d8e5}
-.btn{display:inline-block;margin-top:18px;padding:13px 18px;border-radius:11px;font-size:13px;font-weight:bold;text-decoration:none;text-align:center;background:var(--k);color:#07070a;transition:.2s}
-.btn:hover{filter:brightness(1.12);transform:translateY(-2px)}
-.btn.off{background:rgba(255,255,255,.06);color:var(--muted);pointer-events:none}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:18px;
+}
+
+.hub{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  padding:24px;
+  border:1px solid var(--line);
+  border-top:3px solid var(--k);
+  border-radius:18px;
+  background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(14,14,20,.7));
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 8px 24px rgba(0,0,0,.25);
+  transition:.3s;
+  scroll-margin-top:100px;
+}
+
+.hub:hover{
+  transform:translateY(-5px);
+  border-color:var(--k);
+  box-shadow:0 14px 40px rgba(0,0,0,.4),0 0 28px color-mix(in srgb,var(--k),transparent 80%);
+}
+
+.hub.flash{
+  animation:flash 1.2s ease;
+}
+
+@keyframes flash{
+  0%,60%{
+    box-shadow:0 0 40px var(--k),0 0 90px color-mix(in srgb,var(--k),transparent 50%);
+  }
+}
+
+.hub-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.icon{
+  width:46px;
+  height:46px;
+  border-radius:13px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:23px;
+  background:color-mix(in srgb,var(--k),transparent 85%);
+}
+
+.status{
+  font-size:10px;
+  font-weight:bold;
+  letter-spacing:.8px;
+  padding:5px 9px;
+  border-radius:100px;
+}
+
+.status.live{
+  background:rgba(0,255,157,.12);
+  color:#00ff9d;
+}
+
+.status.soon{
+  background:rgba(255,255,255,.08);
+  color:var(--muted);
+}
+
+.hub h3{
+  margin-top:16px;
+  font-size:20px;
+  color:#fff;
+}
+
+.code{
+  color:var(--k);
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:1px;
+  margin-top:3px;
+}
+
+.hub p{
+  margin-top:10px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
+  flex:1;
+}
+
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:14px;
+}
+
+.tags span{
+  font-size:11px;
+  padding:5px 9px;
+  border-radius:7px;
+  background:rgba(255,255,255,.06);
+  color:#d8d8e5;
+}
+
+.btn{
+  display:inline-block;
+  margin-top:18px;
+  padding:13px 18px;
+  border-radius:11px;
+  font-size:13px;
+  font-weight:bold;
+  text-decoration:none;
+  text-align:center;
+  background:var(--k);
+  color:#07070a;
+  transition:.2s;
+}
+
+.btn:hover{
+  filter:brightness(1.12);
+  transform:translateY(-2px);
+}
+
+.btn.off{
+  background:rgba(255,255,255,.06);
+  color:var(--muted);
+  pointer-events:none;
+}
 
 /* ABOUT */
-.about{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.about div{padding:22px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.035)}
-.about h4{font-size:16px;color:#fff}.about p{margin-top:8px;font-size:14px;color:var(--muted);line-height:1.6}
+
+.about{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:16px;
+}
+
+.about div{
+  padding:22px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:rgba(255,255,255,.035);
+}
+
+.about h4{
+  font-size:16px;
+  color:#fff;
+}
+
+.about p{
+  margin-top:8px;
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.6;
+}
 
 /* FOOTER */
-footer{margin-top:80px;padding:44px 20px;border-top:1px solid var(--line);text-align:center;background:rgba(0,0,0,.3)}
-.fline{width:100px;height:2px;margin:16px auto;background:linear-gradient(90deg,var(--cyan),var(--purple));border-radius:10px}
-footer p{color:var(--muted);font-size:13px;margin-top:6px}
-footer a{color:var(--cyan);text-decoration:none}footer a:hover{text-decoration:underline}
+
+footer{
+  margin-top:80px;
+  padding:44px 20px;
+  border-top:1px solid var(--line);
+  text-align:center;
+  background:rgba(0,0,0,.3);
+}
+
+.fline{
+  width:100px;
+  height:2px;
+  margin:16px auto;
+  background:linear-gradient(90deg,var(--cyan),var(--purple));
+  border-radius:10px;
+}
+
+footer p{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:6px;
+}
+
+footer a{
+  color:var(--cyan);
+  text-decoration:none;
+}
+
+footer a:hover{
+  text-decoration:underline;
+}
+
+/* MOBILE */
 
 @media(max-width:700px){
-.links{display:none}.menu-btn{display:block}
-.hero{padding-top:60px}.sec{margin:50px 0}.sec-title{font-size:22px}
-.step{flex:0 0 190px}
-.grid{grid-template-columns:1fr}
-.btn,.cta{padding:14px 20px}
+  .links{
+    display:none;
+  }
+
+  .menu-btn{
+    display:block;
+  }
+
+  .hero{
+    padding-top:60px;
+  }
+
+  .sec{
+    margin:50px 0;
+  }
+
+  .sec-title{
+    font-size:22px;
+  }
+
+  .step{
+    flex:0 0 190px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .btn,
+  .cta{
+    padding:14px 20px;
+  }
 }
-@media(prefers-reduced-motion:reduce){.logo-orbit,.logo-orbit::before,.logo-orbit::after,.intro-loader span{animation-duration:3s!important}}
+
+@media(prefers-reduced-motion:reduce){
+  .logo-orbit,
+  .logo-orbit::before,
+  .logo-orbit::after,
+  .intro-loader span{
+    animation-duration:3s!important;
+  }
+}
 
 /* Keep the intro overlay's fade consistent on every device. */
-</style>
-</head>
-<body>
-
-<!-- LOGO INTRO: shown on page load and before opening a hub -->
-<div id="logoIntro" aria-label="thoEdge loading screen">
+</style></head><body><!-- LOGO INTRO --><div id="logoIntro" aria-label="thoEdge loading screen">
   <div class="logo-orbit">
     <div class="logo-circle">
       <img src="logo.png" alt="thoEdge logo" onerror="this.style.display='none'">
     </div>
   </div>
+</div><!-- HEADER --><header id="hd">
+  <div class="nav-container"><a class="brand" href="#home" aria-label="thoEdge Home">
+  <img src="logo.png" alt="thoEdge logo" onerror="this.style.display='none'">
+  <span class="wordmark">tho<b>Edge</b></span>
+</a>
 
-</div>
-<section class="hero" id="home">
-  <span class="pill">STUDY HUBS • CLASS 10 TO ENGINEERING AND BEYOND</span>
-  <h1>One platform. <span>Many hubs.</span></h1>
-  <p>thoEdge brings focused study hubs together, so every student finds the right resources for the right stage, from boards to entrance exams to engineering and careers.</p>
-  <a class="cta" href="#hubs">Explore hubs</a>
-</section>
+<nav class="links" aria-label="Main navigation">
+  <a href="#home">Home</a>
+  <a href="#journey">Journey</a>
+  <a href="#hubs">All Hubs</a>
+  <a href="#about">About</a>
+</nav>
 
-<div class="wrap">
-  <section class="sec" id="journey">
+<button
+  class="menu-btn"
+  id="mb"
+  type="button"
+  aria-label="Open navigation menu"
+  aria-expanded="false"
+  aria-controls="mn">
+  ☰
+</button>
+
+<nav class="menu" id="mn" aria-label="Mobile navigation">
+  <a href="#home">Home</a>
+  <a href="#journey">Journey</a>
+  <a href="#hubs">All Hubs</a>
+  <a href="#about">About</a>
+</nav>
+
+  </div>
+</header><!-- HERO --><section class="hero" id="home">
+  <span class="pill">STUDY HUBS • CLASS 10 TO ENGINEERING AND BEYOND</span>  <h1>One platform. <span>Many hubs.</span></h1>  <p>
+    thoEdge brings focused study hubs together, so every student finds
+    the right resources for the right stage, from boards to entrance
+    exams to engineering and careers.
+  </p><a class="cta" href="#hubs">Explore hubs</a>
+
+</section><div class="wrap">  <!-- STUDENT JOURNEY -->  <section class="sec" id="journey">
     <h2 class="sec-title">Student Journey</h2>
     <p class="sec-desc">Pick your stage. Each step leads to its own hub.</p>
     <div class="journey" id="journey-list"></div>
-  </section>
-
-  <section class="sec" id="hubs">
+  </section>  <!-- ALL HUBS -->  <section class="sec" id="hubs">
     <h2 class="sec-title">All Hubs</h2>
     <p class="sec-desc">Every hub has its own theme and focus.</p>
     <div class="grid" id="hub-grid"></div>
-  </section>
-
-  <section class="sec" id="about">
+  </section>  <!-- ABOUT -->  <section class="sec" id="about">
     <h2 class="sec-title">Why thoEdge</h2>
-    <p class="sec-desc">Simple, organized and free to use.</p>
-    <div class="about">
-      <div><h4>Focused hubs</h4><p>Each hub does one job well, instead of one crowded site doing everything.</p></div>
-      <div><h4>Organized by stage</h4><p>From Class 10 boards to engineering, resources follow the way students actually study.</p></div>
-      <div><h4>Built to grow</h4><p>New hubs are added over time. The next ones are already planned.</p></div>
-    </div>
-  </section>
+    <p class="sec-desc">Simple, organized and free to use.</p><div class="about">
+
+  <div>
+    <h4>Focused hubs</h4>
+    <p>
+      Each hub does one job well, instead of one crowded site doing
+      everything.
+    </p>
+  </div>
+
+  <div>
+    <h4>Organized by stage</h4>
+    <p>
+      From Class 10 boards to engineering, resources follow the way
+      students actually study.
+    </p>
+  </div>
+
+  <div>
+    <h4>Built to grow</h4>
+    <p>
+      New hubs are added over time. The next ones are already planned.
+    </p>
+  </div>
+
 </div>
 
-<footer>
-  <div class="wordmark" style="font-size:18px">tho<b>Edge</b></div>
-  <div class="fline"></div>
-  <p>Copyright © 2026 • thoEdge Creations!</p>
-  <p>Founded by Matta Thoyajaksh</p>
-  <p style="margin-top:12px"><a href="#home">Back to top</a> &nbsp;•&nbsp; <a href="mailto:YOUR_EMAIL@example.com">Contact</a></p>
-</footer>
+  </section></div><!-- FOOTER --><footer>
+  <div class="wordmark" style="font-size:18px">tho<b>Edge</b></div>  <div class="fline"></div>  <p>Copyright © 2026 • thoEdge Creations!</p>
+  <p>Founded by Matta Thoyajaksh</p>  <p style="margin-top:12px">
+    <a href="#home">Back to top</a>
+    &nbsp;•&nbsp;
+    <a href="mailto:YOUR_EMAIL@example.com">Contact</a>
+  </p>
+</footer><script>
+/* HUB LINKS: Update each URL here if your hub address changes. */
 
-<script>
-/* HUB LINKS: update each URL here if your hub address changes. */
-const hubs=[
- {id:"tbh",icon:"📖",name:"Boards Hub",code:"TBH",color:"#f59e0b",status:"live",link:"https://thoedge.github.io/TBH/",stage:"Class 10 & 12",desc:"Board exam preparation: notes, chapter-wise resources, previous papers and revision material.",tags:["Class 10","Class 12","PYQs","Notes"]},
- {id:"tjh",icon:"🎯",name:"JEE Hub",code:"TJH",color:"#00aaff",status:"live",link:"https://thoedge.github.io/TJH/",stage:"Class 11-12",desc:"JEE Main & Advanced and other entrance exams: books, notes, formulas, shortcuts, PYQs, DPPs and mock tests.",tags:["JEE Main","JEE Advanced","BITSAT","NEET"]},
- {id:"eng",icon:"🛠️",name:"Engineering Hub",code:"TEH",color:"#10b981",status:"live",link:"https://thoedge.github.io/TEH/",stage:"Engineering",desc:"Year-wise and branch-wise notes, university question papers, lab manuals and projects.",tags:["Year 1-4","Branches","Notes","Labs"]},
- {id:"skills",icon:"💻",name:"Tech Skills Hub",code:"TSH",color:"#ec4899",status:"live",link:"https://thoedge.github.io/TSH/",stage:"Skills",desc:"Roadmaps and free resources for coding, web development, AI and data structures.",tags:["Coding","Web","AI","DSA"]},
- {id:"gate",icon:"🧭",name:"GATE Hub",code:"TGH",color:"#6366f1",status:"live",link:"https://thoedge.github.io/TGH/",stage:"After engineering",desc:"GATE preparation by branch with syllabus, PYQs, notes and test practice.",tags:["GATE","PYQs","Mock tests"]},
- {id:"career",icon:"🚀",name:"Career Hub",code:"TCH",color:"#eab308",status:"live",link:"https://thoedge.github.io/TCH/",stage:"Careers",desc:"Resume help, internships, placement preparation and interview questions.",tags:["Resume","Internships","Placements"]}
+const hubs = [
+  {
+    id:"tbh",
+    icon:"📖",
+    name:"Boards Hub",
+    code:"TBH",
+    color:"#f59e0b",
+    status:"live",
+    link:"https://thoedge.github.io/TBH/",
+    stage:"Class 10 & 12",
+    desc:"Board exam preparation: notes, chapter-wise resources, previous papers and revision material.",
+    tags:["Class 10","Class 12","PYQs","Notes"]
+  },
+  {
+    id:"tjh",
+    icon:"🎯",
+    name:"JEE Hub",
+    code:"TJH",
+    color:"#00aaff",
+    status:"live",
+    link:"https://thoedge.github.io/TJH/",
+    stage:"Class 11-12",
+    desc:"JEE Main & Advanced and other entrance exams: books, notes, formulas, shortcuts, PYQs, DPPs and mock tests.",
+    tags:["JEE Main","JEE Advanced","BITSAT","NEET"]
+  },
+  {
+    id:"eng",
+    icon:"🛠️",
+    name:"Engineering Hub",
+    code:"TEH",
+    color:"#10b981",
+    status:"live",
+    link:"https://thoedge.github.io/TEH/",
+    stage:"Engineering",
+    desc:"Year-wise and branch-wise notes, university question papers, lab manuals and projects.",
+    tags:["Year 1-4","Branches","Notes","Labs"]
+  },
+  {
+    id:"skills",
+    icon:"💻",
+    name:"Tech Skills Hub",
+    code:"TSH",
+    color:"#ec4899",
+    status:"live",
+    link:"https://thoedge.github.io/TSH/",
+    stage:"Skills",
+    desc:"Roadmaps and free resources for coding, web development, AI and data structures.",
+    tags:["Coding","Web","AI","DSA"]
+  },
+  {
+    id:"gate",
+    icon:"🧭",
+    name:"GATE Hub",
+    code:"TGH",
+    color:"#6366f1",
+    status:"live",
+    link:"https://thoedge.github.io/TGH/",
+    stage:"After engineering",
+    desc:"GATE preparation by branch with syllabus, PYQs, notes and test practice.",
+    tags:["GATE","PYQs","Mock tests"]
+  },
+  {
+    id:"career",
+    icon:"🚀",
+    name:"Career Hub",
+    code:"TCH",
+    color:"#eab308",
+    status:"live",
+    link:"https://thoedge.github.io/TCH/",
+    stage:"Careers",
+    desc:"Resume help, internships, placement preparation and interview questions.",
+    tags:["Resume","Internships","Placements"]
+  }
 ];
 
-const journey=[
- {s:"STEP 1",t:"Class (X & XII)",d:"CBSE Board Exams",hub:"tbh"},
- {s:"STEP 2",t:"Class XI & XII (PCM)",d:"All Competitive Exams",hub:"tjh"},
- {s:"STEP 3",t:"Engineering",d:"Branch & semester",hub:"eng"},
- {s:"STEP 4",t:"Skills",d:"Tech & coding",hub:"skills"},
- {s:"STEP 5",t:"Beyond",d:"GATE & careers",hub:"gate"}
+const journey = [
+  {
+    s:"STEP 1",
+    t:"Class (X & XII)",
+    d:"CBSE Board Exams",
+    hub:"tbh"
+  },
+  {
+    s:"STEP 2",
+    t:"Class XI & XII (PCM)",
+    d:"All Competitive Exams",
+    hub:"tjh"
+  },
+  {
+    s:"STEP 3",
+    t:"Engineering",
+    d:"Branch & semester",
+    hub:"eng"
+  },
+  {
+    s:"STEP 4",
+    t:"Skills",
+    d:"Tech & coding",
+    hub:"skills"
+  },
+  {
+    s:"STEP 5",
+    t:"Beyond",
+    d:"GATE & careers",
+    hub:"gate"
+  }
 ];
 
-const $=id=>document.getElementById(id);
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const byId=id=>hubs.find(h=>h.id===id);
+const $ = id => document.getElementById(id);
 
-$("hub-grid").innerHTML=hubs.map(h=>{
-  const ready=h.status==="live" && h.link && !h.link.startsWith("YOUR_");
-  const btn=ready
+const esc = s =>
+  String(s).replace(/[&<>"']/g, c => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  }[c]));
+
+const byId = id => hubs.find(h => h.id === id);
+
+/* RENDER HUB CARDS */
+
+$("hub-grid").innerHTML = hubs.map(h => {
+
+  const ready =
+    h.status === "live" &&
+    h.link &&
+    !h.link.startsWith("YOUR_");
+
+  const btn = ready
     ? `<a class="btn hub-link" href="${esc(h.link)}">Open ${esc(h.code)} →</a>`
-    : `<span class="btn off">${h.status==="live"?"Check link":"Coming soon"}</span>`;
+    : `<span class="btn off">${h.status === "live" ? "Check link" : "Coming soon"}</span>`;
 
-  return `<article class="hub" id="hub-${h.id}" style="--k:${h.color}">
-    <div class="hub-top"><div class="icon">${h.icon}</div><span class="status ${h.status}">${h.status==="live"?"LIVE":"COMING SOON"}</span></div>
-    <h3>${esc(h.name)}</h3><div class="code">${esc(h.code)} • ${esc(h.stage)}</div>
-    <p>${esc(h.desc)}</p>
-    <div class="tags">${h.tags.map(t=>`<span>${esc(t)}</span>`).join("")}</div>${btn}
-  </article>`;
+  return `
+    <article class="hub" id="hub-${h.id}" style="--k:${h.color}">
+
+      <div class="hub-top">
+        <div class="icon">${h.icon}</div>
+
+        <span class="status ${h.status}">
+          ${h.status === "live" ? "LIVE" : "COMING SOON"}
+        </span>
+      </div>
+
+      <h3>${esc(h.name)}</h3>
+
+      <div class="code">
+        ${esc(h.code)} • ${esc(h.stage)}
+      </div>
+
+      <p>${esc(h.desc)}</p>
+
+      <div class="tags">
+        ${h.tags.map(t => `<span>${esc(t)}</span>`).join("")}
+      </div>
+
+      ${btn}
+
+    </article>
+  `;
 }).join("");
 
-$("journey-list").innerHTML=journey.map(j=>{
-  const h=byId(j.hub);
-  return `<div class="step" tabindex="0" data-h="${j.hub}" style="--k:${h.color}"><small>${j.s}</small><h4>${esc(j.t)}</h4><p>${esc(j.d)}</p></div>`;
+/* RENDER STUDENT JOURNEY */
+
+$("journey-list").innerHTML = journey.map(j => {
+
+  const h = byId(j.hub);
+
+  return `
+    <div
+      class="step"
+      tabindex="0"
+      role="button"
+      aria-label="${esc(j.t)}: open ${esc(h.name)}"
+      data-h="${j.hub}"
+      style="--k:${h.color}">
+
+      <small>${esc(j.s)}</small>
+      <h4>${esc(j.t)}</h4>
+      <p>${esc(j.d)}</p>
+
+    </div>
+  `;
 }).join("");
 
-document.querySelectorAll(".step").forEach(el=>{
-  const go=()=>{
-    const card=$("hub-"+el.dataset.h);
-    if(!card)return;
-    card.scrollIntoView({behavior:"smooth",block:"center"});
-    card.classList.remove("flash");void card.offsetWidth;card.classList.add("flash");
+/* JOURNEY CLICK AND KEYBOARD INTERACTIONS */
+
+document.querySelectorAll(".step").forEach(el => {
+
+  const go = () => {
+
+    const card = $("hub-" + el.dataset.h);
+
+    if (!card) return;
+
+    card.scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+
+    card.classList.remove("flash");
+
+    void card.offsetWidth;
+
+    card.classList.add("flash");
   };
-  el.onclick=go;
-  el.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}};
+
+  el.onclick = go;
+
+  el.onkeydown = e => {
+
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      go();
+    }
+
+  };
+
 });
 
 /* MOBILE MENU */
-const mb=$("mb"),mn=$("mn");
-const closeMenu=()=>{mn.classList.remove("open");mb.setAttribute("aria-expanded","false")};
-mb.onclick=e=>{e.stopPropagation();mb.setAttribute("aria-expanded",mn.classList.toggle("open"))};
-mn.onclick=e=>{if(e.target.closest("a"))closeMenu()};
-document.addEventListener("click",e=>{if(!mn.contains(e.target)&&e.target!==mb)closeMenu()});
 
-/* HEADER hides when scrolled down, shows at the top */
-addEventListener("scroll",()=>{
-  $("hd").classList.toggle("hidden",scrollY>=60);
-  if(scrollY>=60)closeMenu();
-},{passive:true});
+const mb = $("mb");
+const mn = $("mn");
 
-/* LOGO INTRO: about 3 seconds total, including fade-out */
-const intro=$("logoIntro");
-let introPromise=null;
+const closeMenu = () => {
+  mn.classList.remove("open");
+  mb.setAttribute("aria-expanded","false");
+};
 
-function playLogoIntro(){
-  if(introPromise)return introPromise;
+mb.onclick = e => {
+
+  e.stopPropagation();
+
+  const isOpen = mn.classList.toggle("open");
+
+  mb.setAttribute("aria-expanded",String(isOpen));
+
+};
+
+mn.onclick = e => {
+
+  if (e.target.closest("a")) {
+    closeMenu();
+  }
+
+};
+
+document.addEventListener("click", e => {
+
+  if (!mn.contains(e.target) && e.target !== mb) {
+    closeMenu();
+  }
+
+});
+
+/* HEADER HIDES WHEN SCROLLING DOWN */
+
+addEventListener("scroll", () => {
+
+  $("hd").classList.toggle("hidden", scrollY >= 60);
+
+  if (scrollY >= 60) {
+    closeMenu();
+  }
+
+}, {passive:true});
+
+/* LOGO INTRO: ABOUT 3 SECONDS TOTAL, INCLUDING FADE-OUT */
+
+const intro = $("logoIntro");
+
+let introPromise = null;
+
+function playLogoIntro() {
+
+  if (introPromise) {
+    return introPromise;
+  }
 
   intro.classList.remove("hide");
-  intro.style.display="flex";
+  intro.style.display = "flex";
 
-  introPromise=new Promise(resolve=>{
-    setTimeout(()=>{
+  introPromise = new Promise(resolve => {
+
+    setTimeout(() => {
+
       intro.classList.add("hide");
-      setTimeout(()=>{
-        intro.style.display="none";
-        introPromise=null;
+
+      setTimeout(() => {
+
+        intro.style.display = "none";
+
+        introPromise = null;
+
         resolve();
+
       },400);
+
     },2600);
+
   });
 
   return introPromise;
 }
 
-/* Show logo animation whenever the main page loads */
-window.addEventListener("load",()=>{
+/* SHOW LOGO ANIMATION WHEN THE MAIN PAGE LOADS */
+
+window.addEventListener("load", () => {
   playLogoIntro();
 });
 
-/* Play the logo animation before navigating to a hub */
-document.addEventListener("click",async event=>{
-  const link=event.target.closest("a.hub-link");
-  if(!link)return;
+/* PLAY LOGO ANIMATION BEFORE OPENING A HUB */
+
+document.addEventListener("click", async event => {
+
+  const link = event.target.closest("a.hub-link");
+
+  if (!link) return;
 
   event.preventDefault();
-  if(link.dataset.opening==="true")return;
-  link.dataset.opening="true";
 
-  const destination=link.href;
+  if (link.dataset.opening === "true") return;
+
+  link.dataset.opening = "true";
+
+  const destination = link.href;
+
   await playLogoIntro();
-  window.location.href=destination;
+
+  window.location.href = destination;
+
 });
-</script>
-</body>
+</script></body>
 </html>
